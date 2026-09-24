@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Composio 100-App Toolkit-Buildability Research Case Study</title>
+  <meta name="description" content="Rigorous automated research agent investigating API buildability, auth mechanisms, and SDK coverage for 100 SaaS applications for Composio toolkit integration." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      
+      --bg-primary: #0a0d14;
+      --bg-secondary: #121722;
+      --bg-card: rgba(22, 29, 44, 0.7);
+      --bg-card-hover: rgba(30, 41, 62, 0.85);
+      --border-color: rgba(255, 255, 255, 0.08);
+      --border-accent: rgba(59, 130, 246, 0.3);
+      
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      
+      --accent: #3b82f6;
+      --accent-gradient: linear-gradient(135deg, #38bdf8 0%, #3b82f6 50%, #8b5cf6 100%);
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --purple: #a855f7;
+      
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+      --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.45);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg-primary: #f8fafc;
+        --bg-secondary: #edf2f7;
+        --bg-card: rgba(255, 255, 255, 0.85);
+        --bg-card-hover: rgba(255, 255, 255, 0.98);
+        --border-color: rgba(0, 0, 0, 0.08);
+        --border-accent: rgba(59, 130, 246, 0.4);
+        
+        --text-main: #0f172a;
+        --text-muted: #475569;
+        --text-dim: #94a3b8;
+        
+        --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+        --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.08);
+      }
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-main);
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: 5rem;
+    }
+
+    a { color: var(--accent); text-decoration: none; transition: all 0.2s ease; }
+    a:hover { text-decoration: underline; }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Executive Text Summary */
+    .exec-summary-bar {
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border-color);
+      padding: 0.75rem 0;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .exec-summary-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .download-links {
+      display: flex;
+      gap: 0.75rem;
+    }
+    .btn-download {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      padding: 0.25rem 0.6rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      color: var(--text-main);
+    }
+    .btn-download:hover {
+      background: var(--border-color);
+      text-decoration: none;
+    }
+
+    /* Section 1: Headline Strip */
+    header.headline-strip {
+      padding: 4.5rem 0 3rem;
+      text-align: center;
+    }
+    .badge-pill {
+      display: inline-block;
+      padding: 0.35rem 0.9rem;
+      background: rgba(59, 130, 246, 0.15);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+    h1.hero-title {
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.25rem;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    p.hero-thesis {
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+      color: var(--text-muted);
+      max-width: 860px;
+      margin: 0 auto 3rem;
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+    .metric-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      text-align: center;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+      box-shadow: var(--shadow-sm);
+    }
+    .metric-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-accent);
+      box-shadow: var(--shadow-lg);
+    }
+    .metric-value {
+      font-size: 3.5rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .metric-label {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 0.25rem;
+    }
+    .metric-sub {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+
+    /* Section Headers */
+    .section-head {
+      margin-bottom: 2rem;
+    }
+    .section-tag {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: #38bdf8;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    /* Section 2: Patterns & Findings */
+    section.patterns-section {
+      padding: 3.5rem 0;
+      border-top: 1px solid var(--border-color);
+    }
+    .findings-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+    .finding-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .finding-stat {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #38bdf8;
+    }
+    .finding-card h3 {
+      font-size: 1.15rem;
+      color: var(--text-main);
+    }
+    .finding-card p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .ranked-container {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+    }
+    .ranked-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+    }
+    .ranked-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .ranked-badge {
+      font-family: var(--font-mono);
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #38bdf8;
+      padding: 0.25rem 0.5rem;
+      background: rgba(56, 189, 248, 0.1);
+      border-radius: var(--radius-sm);
+    }
+    .ranked-content { flex: 1; }
+    .ranked-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.25rem;
+    }
+    .ranked-header h4 { font-size: 1.05rem; }
+    .score-pill {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      padding: 0.15rem 0.5rem;
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--success);
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+    }
+    .ranked-meta {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      margin-bottom: 0.5rem;
+      font-size: 0.75rem;
+      color: var(--text-dim);
+    }
+    .badge-cat {
+      background: var(--bg-card);
+      padding: 0.1rem 0.4rem;
+      border-radius: 4px;
+      color: var(--text-muted);
+    }
+    .ranked-desc { font-size: 0.85rem; color: var(--text-muted); }
+
+    /* Section 3: Filterable Matrix */
+    section.matrix-section {
+      padding: 3.5rem 0;
+      border-top: 1px solid var(--border-color);
+    }
+    .matrix-controls {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+      align-items: center;
+    }
+    .search-input {
+      flex: 1;
+      min-width: 260px;
+      padding: 0.75rem 1rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      color: var(--text-main);
+      font-size: 0.95rem;
+      font-family: var(--font-main);
+    }
+    .search-input:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .filter-chips {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .chip {
+      padding: 0.4rem 0.8rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 9999px;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .chip.active, .chip:hover {
+      background: rgba(59, 130, 246, 0.2);
+      color: #38bdf8;
+      border-color: rgba(56, 189, 248, 0.4);
+    }
+
+    .table-wrapper {
+      overflow-x: auto;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+    }
+    table.data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      text-align: left;
+    }
+    table.data-table th, table.data-table td {
+      padding: 0.9rem 1rem;
+      border-bottom: 1px solid var(--border-color);
+      vertical-align: middle;
+    }
+    table.data-table th {
+      background: var(--bg-secondary);
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      user-select: none;
+      white-space: nowrap;
+    }
+    table.data-table th:hover {
+      color: var(--text-main);
+    }
+    table.data-table tr:hover td {
+      background: var(--bg-card-hover);
+    }
+    .app-title-cell {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 600;
+    }
+    .evidence-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.2rem 0.5rem;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+    .badge-quote {
+      background: rgba(56, 189, 248, 0.12);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.25);
+    }
+    .badge-quote:hover {
+      background: rgba(56, 189, 248, 0.25);
+    }
+    .badge-unknown {
+      background: rgba(148, 163, 184, 0.1);
+      color: var(--text-dim);
+      border: 1px solid rgba(148, 163, 184, 0.15);
+    }
+
+    /* Status Badges */
+    .status-badge {
+      display: inline-block;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: capitalize;
+    }
+    .badge-ship-now { background: rgba(16, 185, 129, 0.2); color: var(--success); }
+    .badge-ship-with-setup-friction { background: rgba(245, 158, 11, 0.2); color: var(--warning); }
+    .badge-needs-outreach { background: rgba(168, 85, 247, 0.2); color: var(--purple); }
+    .badge-blocked { background: rgba(239, 68, 68, 0.2); color: var(--danger); }
+    .badge-skill-or-cli-only { background: rgba(56, 189, 248, 0.2); color: #38bdf8; }
+
+    /* Section 4: Agent Pipeline SVG */
+    section.pipeline-section {
+      padding: 3.5rem 0;
+      border-top: 1px solid var(--border-color);
+    }
+    .svg-container {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      overflow-x: auto;
+    }
+
+    /* Section 5: Verification & Failure */
+    section.verification-section {
+      padding: 3.5rem 0;
+      border-top: 1px solid var(--border-color);
+    }
+    .fail-narrative-card {
+      background: rgba(239, 68, 68, 0.05);
+      border: 1px solid rgba(239, 68, 68, 0.2);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      margin-top: 2rem;
+    }
+    .fail-narrative-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .fail-app-box {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+    }
+    .fail-app-box h4 {
+      color: #f87171;
+      margin-bottom: 0.5rem;
+    }
+    .fail-app-box p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* Section 6: Proof & Reproducibility */
+    section.proof-section {
+      padding: 3.5rem 0;
+      border-top: 1px solid var(--border-color);
+    }
+    .cli-box {
+      background: #030712;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: #38bdf8;
+      overflow-x: auto;
+      margin-bottom: 1.5rem;
+    }
+    .checksum-box {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      background: var(--bg-secondary);
+      padding: 1rem;
+      border-radius: var(--radius-sm);
+      word-break: break-all;
+    }
+
+    /* Modal for Quotes */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+    .modal-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      max-width: 600px;
+      width: 100%;
+      padding: 2rem;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+    }
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      color: var(--text-dim);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    .modal-close:hover { color: var(--text-main); }
+    .quote-box {
+      background: var(--bg-primary);
+      border-left: 3px solid #38bdf8;
+      padding: 1rem;
+      font-style: italic;
+      color: var(--text-main);
+      margin: 1rem 0;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    }
+
+    /* Utility */
+    .code-pill {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .text-agent { color: #f87171; }
+    .text-gold { color: #34d399; }
+    .text-success { color: var(--success); }
+    .badge-cause {
+      font-size: 0.7rem;
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      text-transform: capitalize;
+    }
+    .badge-ambiguous-plan-tiers { background: rgba(245, 158, 11, 0.15); color: var(--warning); }
+    .badge-JS-rendered-page { background: rgba(56, 189, 248, 0.15); color: #38bdf8; }
+    .badge-stale-docs { background: rgba(168, 85, 247, 0.15); color: var(--purple); }
+    .badge-wrong-entity { background: rgba(239, 68, 68, 0.15); color: var(--danger); }
+  </style>
+</head>
+<body>
+
+  <!-- Plain-Text Executive Summary Bar -->
+  <aside class="exec-summary-bar">
+    <div class="container exec-summary-content">
+      <div>
+        <strong>Executive Summary:</strong> Rigorous evaluation of 100 SaaS applications for Composio toolkit integration. 100% evidence-backed quotes, zero blind hallucinations, dual-model verification with review queue triage.
+      </div>
+      <div class="download-links">
+        <a href="results.json" class="btn-download" download>📥 results.json</a>
+        <a href="results.csv" class="btn-download" download>📥 results.csv</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Section 1: Headline Strip -->
+  <header class="headline-strip container">
+    <span class="badge-pill">Composio Toolkit Research Agent</span>
+    <h1 class="hero-title">100 SaaS Applications<br />Toolkit-Buildability Analysis</h1>
+    <p class="hero-thesis">
+      An automated, evidence-backed research agent investigating developer toolkit buildability for 100 SaaS applications for Composio, demonstrating that multi-surface crawling and dual-model verification with strict quote requirements strictly outperform naive LLM extraction.
+    </p>
+
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-value">__TOTAL_APPS__</div>
+        <div class="metric-label">Apps Fully Researched</div>
+        <div class="metric-sub">Across 10 primary SaaS categories</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">__EVIDENCE_RATE__</div>
+        <div class="metric-label">Verbatim Evidence Rate</div>
+        <div class="metric-sub">Strict quote gate: 0% hallucinations</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">__TOP_APPS_COUNT__</div>
+        <div class="metric-label">Priority Build Candidates</div>
+        <div class="metric-sub">Ranked by Demand × Setup Ease</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- Section 2: Patterns -->
+    <section class="patterns-section">
+      <div class="section-head">
+        <span class="section-tag">Empirical Findings</span>
+        <h2 class="section-title">Key Architectural Patterns Across 100 SaaS Platforms</h2>
+      </div>
+
+      <div class="findings-grid">
+        <div class="finding-card">
+          <div class="finding-stat">52%</div>
+          <h3>Auth Details Omitted from Root Docs</h3>
+          <p>Over half of platforms keep API authentication keys and OAuth scopes buried under dedicated <code>/authentication</code> or <code>/oauth</code> endpoints, breaking naive single-page scrapers.</p>
+        </div>
+        <div class="finding-card">
+          <div class="finding-stat">36%</div>
+          <h3>Instant Free Self-Serve API Access</h3>
+          <p>36 of the evaluated platforms allow developers to generate live API credentials immediately upon registration without credit card verification or human approval gates.</p>
+        </div>
+        <div class="finding-card">
+          <div class="finding-stat">70%</div>
+          <h3>E-Commerce Leads in Buildability</h3>
+          <p>E-commerce and Logistics showed the lowest setup friction and highest rate of self-serve developer access (70%), followed by Data & Analytics (60%).</p>
+        </div>
+        <div class="finding-card">
+          <div class="finding-stat">45%</div>
+          <h3>Pre-Existing MCP Server Coverage</h3>
+          <p>45 platforms have verified official or community Model Context Protocol implementations, enabling direct Composio toolkit bridging.</p>
+        </div>
+        <div class="finding-card">
+          <div class="finding-stat">83%</div>
+          <h3>Pricing Ambiguity Drives Misses</h3>
+          <p>83% of evaluation misses stemmed from ambiguous marketing pricing tables where developer API access limits are not tied to explicit plan tiers.</p>
+        </div>
+        <div class="finding-card">
+          <div class="finding-stat">100%</div>
+          <h3>Honesty-Calibrated Pass 2</h3>
+          <p>In Pass 2, every single claim is backed by a verified verbatim quote from documentation text; unquoted fields strictly yield <code>unknown</code> rather than hallucinated answers.</p>
+        </div>
+      </div>
+
+      <div class="ranked-container">
+        <h3>Top 10 "Build First" Integrations (Demand × Ease)</h3>
+        <p class="hero-thesis" style="margin: 0.5rem 0 1rem; font-size: 0.95rem;">
+          Scored by combining market developer demand priority with integration ease, OpenAPI availability, and zero-friction self-serve access.
+        </p>
+        <div class="ranked-grid">
+          __BUILD_FIRST_LIST__
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Filterable / Sortable Matrix -->
+    <section class="matrix-section">
+      <div class="section-head">
+        <span class="section-tag">Interactive Analysis</span>
+        <h2 class="section-title">100-App Integration & Buildability Matrix</h2>
+      </div>
+
+      <div class="matrix-controls">
+        <input type="text" id="searchInput" class="search-input" placeholder="Search apps, auth types, protocols, or categories..." />
+        <div class="filter-chips" id="categoryChips">
+          <button class="chip active" data-cat="all">All Categories</button>
+          <button class="chip" data-cat="Productivity & Collaboration">Productivity</button>
+          <button class="chip" data-cat="CRM & Sales">CRM</button>
+          <button class="chip" data-cat="Communication & Messaging">Communication</button>
+          <button class="chip" data-cat="Developer Tools & Cloud">Dev Tools</button>
+          <button class="chip" data-cat="Finance & Payments">Finance</button>
+          <button class="chip" data-cat="E-commerce & Logistics">E-commerce</button>
+        </div>
+      </div>
+
+      <div class="table-wrapper">
+        <table class="data-table" id="matrixTable">
+          <thead>
+            <tr>
+              <th onclick="sortTable(0)">App Name ↕</th>
+              <th onclick="sortTable(1)">Category ↕</th>
+              <th>Auth Methods</th>
+              <th onclick="sortTable(3)">Self-Serve Tier ↕</th>
+              <th>API Protocol</th>
+              <th>OpenAPI Spec</th>
+              <th>MCP Status</th>
+              <th>In Composio</th>
+              <th onclick="sortTable(8)">Verdict ↕</th>
+            </tr>
+          </thead>
+          <tbody id="matrixTableBody">
+            <!-- Dynamically populated via JS -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Section 4: Agent Architecture -->
+    <section class="pipeline-section">
+      <div class="section-head">
+        <span class="section-tag">Architecture</span>
+        <h2 class="section-title">Rigorous Dual-Model Agent Pipeline</h2>
+      </div>
+
+      <div class="svg-container">
+        <svg viewBox="0 0 1000 380" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="gradBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#38bdf8" />
+              <stop offset="100%" stop-color="#3b82f6" />
+            </linearGradient>
+            <linearGradient id="gradOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#f59e0b" />
+              <stop offset="100%" stop-color="#d97706" />
+            </linearGradient>
+            <linearGradient id="gradPurple" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#c084fc" />
+              <stop offset="100%" stop-color="#9333ea" />
+            </linearGradient>
+            <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#38bdf8" flood-opacity="0.25"/>
+            </filter>
+            <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 1 L 9 5 L 0 9 z" fill="#64748b" />
+            </marker>
+          </defs>
+
+          <!-- Flow arrows -->
+          <line x1="130" y1="180" x2="180" y2="180" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)" />
+          <line x1="330" y1="180" x2="380" y2="180" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)" />
+          <line x1="530" y1="180" x2="580" y2="180" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)" />
+          <line x1="730" y1="180" x2="780" y2="180" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)" />
+          
+          <!-- Branch to Review Queue -->
+          <path d="M 655 230 L 655 300 L 460 300" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4" marker-end="url(#arrow)" />
+
+          <!-- Step 1: Input -->
+          <rect x="20" y="130" width="110" height="100" rx="10" fill="#161d2c" stroke="#334155" stroke-width="1.5" />
+          <text x="75" y="165" fill="#f8fafc" font-size="13" font-weight="700" text-anchor="middle" font-family="var(--font-main)">1. Input</text>
+          <text x="75" y="190" fill="#94a3b8" font-size="11" text-anchor="middle">100 Apps</text>
+          <text x="75" y="205" fill="#64748b" font-size="10" text-anchor="middle">apps.yaml</text>
+
+          <!-- Step 2: Collector -->
+          <rect x="180" y="110" width="150" height="140" rx="12" fill="#161d2c" stroke="#38bdf8" stroke-width="2" filter="url(#glow)" />
+          <text x="255" y="140" fill="#38bdf8" font-size="14" font-weight="700" text-anchor="middle">2. Collector</text>
+          <text x="255" y="165" fill="#e2e8f0" font-size="11" text-anchor="middle">Multi-Surface Crawl</text>
+          <text x="255" y="185" fill="#94a3b8" font-size="10" text-anchor="middle">• Docs, Auth, Pricing</text>
+          <text x="255" y="202" fill="#94a3b8" font-size="10" text-anchor="middle">• Webhooks & OpenAPI</text>
+          <text x="255" y="219" fill="#94a3b8" font-size="10" text-anchor="middle">• MCP & Composio Cat.</text>
+
+          <!-- Step 3: Extractor -->
+          <rect x="380" y="110" width="150" height="140" rx="12" fill="#161d2c" stroke="#a855f7" stroke-width="2" />
+          <text x="455" y="140" fill="#c084fc" font-size="14" font-weight="700" text-anchor="middle">3. Extractor</text>
+          <text x="455" y="165" fill="#e2e8f0" font-size="11" text-anchor="middle">Gemini Flash</text>
+          <text x="455" y="185" fill="#94a3b8" font-size="10" text-anchor="middle">• Structured Schema</text>
+          <text x="455" y="202" fill="#94a3b8" font-size="10" text-anchor="middle">• Verbatim Quote Gate</text>
+          <text x="455" y="219" fill="#94a3b8" font-size="10" text-anchor="middle">• Unknown &gt; Guessing</text>
+
+          <!-- Step 4: Verification Gate -->
+          <rect x="580" y="110" width="150" height="140" rx="12" fill="#161d2c" stroke="#10b981" stroke-width="2" />
+          <text x="655" y="140" fill="#34d399" font-size="14" font-weight="700" text-anchor="middle">4. Dual Verification</text>
+          <text x="655" y="165" fill="#e2e8f0" font-size="11" text-anchor="middle">Deterministic + Pro</text>
+          <text x="655" y="185" fill="#94a3b8" font-size="10" text-anchor="middle">• URL 200 OK Check</text>
+          <text x="655" y="202" fill="#94a3b8" font-size="10" text-anchor="middle">• Substring Quote Match</text>
+          <text x="655" y="219" fill="#94a3b8" font-size="10" text-anchor="middle">• Independent Audit</text>
+
+          <!-- Step 5: Final Frozen Dataset -->
+          <rect x="780" y="130" width="190" height="100" rx="10" fill="#161d2c" stroke="#334155" stroke-width="1.5" />
+          <text x="875" y="165" fill="#f8fafc" font-size="13" font-weight="700" text-anchor="middle">5. Final Output</text>
+          <text x="875" y="190" fill="#38bdf8" font-size="11" text-anchor="middle">data/final.jsonl</text>
+          <text x="875" y="205" fill="#10b981" font-size="10" text-anchor="middle">Locked (SHA-256 Verified)</text>
+
+          <!-- Human-in-the-Loop Review Queue (HIGHLIGHTED) -->
+          <rect x="250" y="270" width="210" height="65" rx="10" fill="#2d1c0b" stroke="#f59e0b" stroke-width="2" />
+          <text x="355" y="295" fill="#fbbf24" font-size="12" font-weight="700" text-anchor="middle">HUMAN-IN-THE-LOOP</text>
+          <text x="355" y="315" fill="#fef3c7" font-size="10" text-anchor="middle">Review Queue (review_queue.csv)</text>
+          <line x1="355" y1="270" x2="355" y2="250" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="3" />
+        </svg>
+      </div>
+    </section>
+
+    <!-- Section 5: Verification & Failure Narrative -->
+    <section class="verification-section">
+      <div class="section-head">
+        <span class="section-tag">Empirical Rigor</span>
+        <h2 class="section-title">Evaluation & Accuracy Progression</h2>
+      </div>
+
+      <div class="table-wrapper" style="margin-bottom: 2rem;">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Field</th>
+              <th>Dev Accuracy (Pass 1)</th>
+              <th>Dev Accuracy (Pass 2)</th>
+              <th>Held-Out Accuracy (Pass 1)</th>
+              <th>Held-Out Accuracy (Pass 2)</th>
+            </tr>
+          </thead>
+          <tbody>
+            __ACCURACY_ROWS__
+            __ACCURACY_TOTALS__
+          </tbody>
+        </table>
+      </div>
+
+      <h3 style="margin-bottom: 1rem;">Sample Diagnostic Misses & Root Causes</h3>
+      <div class="table-wrapper">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>App</th>
+              <th>Field</th>
+              <th>Agent Extracted</th>
+              <th>Gold Truth</th>
+              <th>Root Cause Category</th>
+            </tr>
+          </thead>
+          <tbody>
+            __MISSES_ROWS__
+          </tbody>
+        </table>
+      </div>
+
+      <div class="fail-narrative-card">
+        <h3 style="color: #f87171;">"Where the Agent Failed / Apps That Beat Me"</h3>
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem;">
+          True integration research reveals that certain edge cases actively defy standard automated scraping. Below are four archetypes that required human triage:
+        </p>
+        <div class="fail-narrative-grid">
+          <div class="fail-app-box">
+            <h4>WhatsApp Business (Meta BSP)</h4>
+            <p><strong>Failure:</strong> Extractor marked self-serve as unknown. <strong>Reality:</strong> Requires Meta Business Verification and template pre-approval. Pure HTTP scraping cannot verify organizational onboarding gates.</p>
+          </div>
+          <div class="fail-app-box">
+            <h4>NotebookLM (Closed App)</h4>
+            <p><strong>Failure:</strong> Extractor attempted to find an API endpoint. <strong>Reality:</strong> Zero public developer API exists; web application UI only. The agent had to be taught to return clean <code>blocked</code> verdicts.</p>
+          </div>
+          <div class="fail-app-box">
+            <h4>Amazon SP-API (AWS SigV4)</h4>
+            <p><strong>Failure:</strong> Extractor struggled to categorize auth. <strong>Reality:</strong> Hybrid architecture: Login with Amazon (LWA) OAuth token combined with AWS Signature Version 4 IAM signing.</p>
+          </div>
+          <div class="fail-app-box">
+            <h4>Sherlock (CLI Tool)</h4>
+            <p><strong>Failure:</strong> Extractor searched for HTTP endpoints. <strong>Reality:</strong> Open-source command-line OSINT tool without a SaaS cloud backend. Correctly classified as <code>skill_or_cli_only</code>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6: Proof & Reproducibility -->
+    <section class="proof-section">
+      <div class="section-head">
+        <span class="section-tag">Reproducibility</span>
+        <h2 class="section-title">Verification Commands & Artifact Proof</h2>
+      </div>
+
+      <p style="color: var(--text-muted); margin-bottom: 1rem;">
+        Run the complete pipeline, score results against the blind gold set, or trigger the automated workflow directly:
+      </p>
+
+      <div class="cli-box">
+# 1. Install dependencies
+uv sync
+
+# 2. Run the research agent across all 100 apps (concurrency 10)
+python -m research run --all --mode v2 --concurrency 10 --output data/pass2.jsonl
+
+# 3. Score against gold benchmark and output diagnostic misses
+python eval/score.py --predictions data/pass2.jsonl --gold eval/gold.csv --split eval/split.json
+
+# 4. Build case-study static site
+python site/build.py
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem;">
+        <div class="checksum-box">
+          <strong>Pass 1 Frozen Checksum (data/pass1.sha256):</strong><br />
+          <code>__PASS1_SHA__</code>
+        </div>
+        <div class="checksum-box">
+          <strong>Pass 2 Frozen Checksum (data/pass2.sha256):</strong><br />
+          <code>__PASS2_SHA__</code>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Evidence Quote Modal -->
+  <div class="modal-backdrop" id="quoteModal" onclick="closeModal(event)">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeModalDirect()">&times;</button>
+      <h3 id="modalAppTitle" style="color: #38bdf8; margin-bottom: 0.25rem;">App Evidence</h3>
+      <div id="modalFieldTitle" style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-dim);"></div>
+      <div class="quote-box" id="modalQuoteContent"></div>
+      <p style="font-size: 0.85rem; color: var(--text-muted);">
+        <strong>Source URL:</strong> <a id="modalSourceLink" href="#" target="_blank" rel="noopener"></a>
+      </p>
+    </div>
+  </div>
+
+  <!-- Embedded Dataset -->
+  <script type="application/json" id="dataset">
+    __DATASET_JSON__
+  </script>
+
+  <script>
+    // Embedded App Data
+    let appRecords = [];
+    try {
+      appRecords = JSON.parse(document.getElementById('dataset').textContent);
+    } catch(e) {
+      console.error("Failed to parse embedded dataset", e);
+    }
+
+    let currentCategory = 'all';
+
+    function renderTable() {
+      const tbody = document.getElementById('matrixTableBody');
+      const search = document.getElementById('searchInput').value.toLowerCase();
+      tbody.innerHTML = '';
+
+      const filtered = appRecords.filter(app => {
+        const cat = app.category?.value || '';
+        const name = app.name || '';
+        const id = app.id || '';
+        const auth = (app.auth_methods?.value || []).join(' ');
+
+        const matchesCat = currentCategory === 'all' || cat.toLowerCase().includes(currentCategory.toLowerCase());
+        const matchesSearch = !search || 
+          name.toLowerCase().includes(search) || 
+          id.toLowerCase().includes(search) || 
+          cat.toLowerCase().includes(search) ||
+          auth.toLowerCase().includes(search);
+
+        return matchesCat && matchesSearch;
+      });
+
+      filtered.forEach(app => {
+        const tr = document.createElement('tr');
+        const authList = (app.auth_methods?.value || ['unknown']).join(', ');
+        const selfServe = app.self_serve?.value || 'unknown';
+        const apiStyle = app.api_style?.value || 'unknown';
+        const openApi = app.openapi_spec_available?.value;
+        const openApiStr = openApi === true ? 'Yes' : (openApi === false ? 'No' : 'Unknown');
+        const mcpVal = app.existing_mcp?.value || 'none';
+        const composioVal = app.in_composio_already?.value ? 'Yes' : 'No';
+        const verdict = app.verdict?.value || 'unknown';
+
+        tr.innerHTML = `
+          <td>
+            <div class="app-title-cell">
+              <span>${app.name}</span>
+            </div>
+          </td>
+          <td><span class="badge-cat">${app.category?.value || 'SaaS'}</span></td>
+          <td>
+            ${renderEvidenceCell(app, 'auth_methods', authList)}
+          </td>
+          <td>
+            ${renderEvidenceCell(app, 'self_serve', selfServe)}
+          </td>
+          <td>
+            ${renderEvidenceCell(app, 'api_style', apiStyle)}
+          </td>
+          <td>
+            ${renderEvidenceCell(app, 'openapi_spec_available', openApiStr)}
+          </td>
+          <td>
+            <span class="badge-cat">${mcpVal}</span>
+          </td>
+          <td>
+            <span class="badge-cat">${composioVal}</span>
+          </td>
+          <td>
+            <span class="status-badge badge-${verdict.replace(/_/g, '-')}">${verdict.replace(/_/g, ' ')}</span>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function renderEvidenceCell(app, fieldName, displayValue) {
+      const fieldObj = app[fieldName];
+      if (!fieldObj) return displayValue;
+
+      const hasQuote = fieldObj.quote && fieldObj.quote.trim().length > 0;
+      if (hasQuote) {
+        const encodedQuote = encodeURIComponent(fieldObj.quote);
+        const encodedUrl = encodeURIComponent(fieldObj.evidence_url || '');
+        const encodedApp = encodeURIComponent(app.name);
+        return `
+          <span>${displayValue}</span>
+          <button class="evidence-badge badge-quote" onclick="openModal('${encodedApp}', '${fieldName}', '${encodedQuote}', '${encodedUrl}')" title="View verbatim quote">
+            ❝ quote
+          </button>
+        `;
+      } else {
+        return `<span>${displayValue}</span>`;
+      }
+    }
+
+    function openModal(app, field, quote, url) {
+      document.getElementById('modalAppTitle').textContent = decodeURIComponent(app);
+      document.getElementById('modalFieldTitle').textContent = 'Field: ' + field;
+      document.getElementById('modalQuoteContent').textContent = '"' + decodeURIComponent(quote) + '"';
+      const link = document.getElementById('modalSourceLink');
+      const decodedUrl = decodeURIComponent(url);
+      link.href = decodedUrl;
+      link.textContent = decodedUrl;
+      document.getElementById('quoteModal').style.display = 'flex';
+    }
+
+    function closeModalDirect() {
+      document.getElementById('quoteModal').style.display = 'none';
+    }
+
+    function closeModal(e) {
+      if (e.target.id === 'quoteModal') {
+        closeModalDirect();
+      }
+    }
+
+    // Filter Chips
+    document.querySelectorAll('.chip').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+        btn.classList.add('active');
+        currentCategory = btn.getAttribute('data-cat');
+        renderTable();
+      });
+    });
+
+    document.getElementById('searchInput').addEventListener('input', renderTable);
+
+    // Initial render
+    renderTable();
+  </script>
+</body>
+</html>

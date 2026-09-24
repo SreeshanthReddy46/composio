@@ -1,0 +1,26 @@
+{
+  "dev": [
+    "notion",
+    "hubspot",
+    "twilio",
+    "github",
+    "google-drive",
+    "stripe",
+    "webflow",
+    "greenhouse",
+    "posthog",
+    "shopify"
+  ],
+  "held_out": [
+    "linear",
+    "attio",
+    "whatsapp-business",
+    "sentry",
+    "notebooklm",
+    "brex",
+    "typeform",
+    "workday",
+    "sherlock",
+    "amazon-selling-partner"
+  ]
+}

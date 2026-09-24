@@ -1,0 +1,240 @@
+app,field,gold_value,evidence_url,notes
+notion,auth_methods,"[""oauth2"", ""bearer_token""]",https://developers.notion.com/docs/authorization,Supports Internal Integration Tokens and Public OAuth2
+notion,self_serve,free_self_serve,https://developers.notion.com/docs/create-a-notion-integration,Free workspace allows instant integration creation
+notion,api_style,rest,https://developers.notion.com/reference/intro,Standard REST JSON API
+notion,api_breadth,medium,https://developers.notion.com/reference,Core CRUD on pages blocks databases
+notion,existing_mcp,official,https://github.com/modelcontextprotocol/servers/tree/main/src/notion,Maintained in official MCP repo
+notion,sandbox_available,false,https://developers.notion.com,No isolated sandbox; test in workspace
+notion,openapi_spec_available,true,https://developers.notion.com,Postman/OpenAPI available
+notion,webhooks,false,https://developers.notion.com,No native HTTP webhook dispatch
+notion,verdict,ship_now,https://developers.notion.com,Ready for immediate integration
+notion,main_blocker,none,https://developers.notion.com,No blocking impediments
+notion,difficulty_1_to_5,2,https://developers.notion.com,Standard OAuth2 and block model
+
+hubspot,auth_methods,"[""oauth2"", ""bearer_token""]",https://developers.hubspot.com/docs/api/overview,Private app tokens and OAuth2
+hubspot,self_serve,free_self_serve,https://developers.hubspot.com,Free developer accounts available
+hubspot,api_style,rest,https://developers.hubspot.com/docs/api/overview,Standard REST v3 API
+hubspot,api_breadth,large,https://developers.hubspot.com/docs/api/overview,Full CRM and marketing platform
+hubspot,existing_mcp,community,https://github.com/modelcontextprotocol/servers,Community MCP servers
+hubspot,sandbox_available,true,https://developers.hubspot.com/docs/api/developer-test-accounts,Developer test accounts provided
+hubspot,openapi_spec_available,true,https://api.hubspot.com,Public OpenAPI specs published
+hubspot,webhooks,true,https://developers.hubspot.com/docs/api/webhooks,Webhooks API supported
+hubspot,verdict,ship_now,https://developers.hubspot.com,Ready for immediate integration
+hubspot,main_blocker,none,https://developers.hubspot.com,No blocking impediments
+hubspot,difficulty_1_to_5,2,https://developers.hubspot.com,Standard REST with clear documentation
+
+twilio,auth_methods,"[""basic"", ""api_key""]",https://www.twilio.com/docs/usage/api,Account SID and Auth Token or API Keys
+twilio,self_serve,trial_self_serve,https://www.twilio.com/try-twilio,Free trial credits with phone verification
+twilio,api_style,rest,https://www.twilio.com/docs/usage/api,Standard REST API
+twilio,api_breadth,large,https://www.twilio.com/docs,Voice SMS Verify and Communications
+twilio,existing_mcp,community,https://github.com/modelcontextprotocol/servers,Community MCP servers
+twilio,sandbox_available,true,https://www.twilio.com/docs/iam/test-credentials,Test credentials and magic numbers
+twilio,openapi_spec_available,true,https://github.com/twilio/twilio-oai,Official OpenAPI specification repo
+twilio,webhooks,true,https://www.twilio.com/docs/usage/webhooks,HTTP callback webhooks
+twilio,verdict,ship_now,https://www.twilio.com/docs,Ready for immediate integration
+twilio,main_blocker,none,https://www.twilio.com/docs,No blocking impediments
+twilio,difficulty_1_to_5,2,https://www.twilio.com/docs,High quality SDKs and API specs
+
+github,auth_methods,"[""oauth2"", ""bearer_token""]",https://docs.github.com/en/rest/authentication/authenticating-to-the-rest-api,Personal access tokens GitHub Apps and OAuth
+github,self_serve,free_self_serve,https://github.com/settings/tokens,Instant token generation on free accounts
+github,api_style,rest,https://docs.github.com/en/rest,REST API v3 and GraphQL v4
+github,api_breadth,large,https://docs.github.com/en/rest,Complete platform surface
+github,existing_mcp,official,https://github.com/modelcontextprotocol/servers/tree/main/src/github,Official MCP server implementation
+github,sandbox_available,false,https://docs.github.com,Test in private repos
+github,openapi_spec_available,true,https://github.com/github/rest-api-description,Comprehensive OpenAPI repo
+github,webhooks,true,https://docs.github.com/en/webhooks,Rich event webhook engine
+github,verdict,ship_now,https://docs.github.com/en/rest,Gold standard REST API
+github,main_blocker,none,https://docs.github.com/en/rest,No blocking impediments
+github,difficulty_1_to_5,1,https://docs.github.com/en/rest,Exceptional docs and tooling
+
+google-drive,auth_methods,"[""oauth2""]",https://developers.google.com/drive/api/v3/about-auth,Google OAuth 2.0 and Service Accounts
+google-drive,self_serve,free_self_serve,https://console.cloud.google.com,Free Google Cloud console access
+google-drive,api_style,rest,https://developers.google.com/drive/api/v3/reference,Google REST API
+google-drive,api_breadth,large,https://developers.google.com/drive/api/v3/reference,Files revisions drives permissions
+google-drive,existing_mcp,official,https://github.com/modelcontextprotocol/servers/tree/main/src/gdrive,Official MCP server implementation
+google-drive,sandbox_available,false,https://developers.google.com/drive,No dedicated sandbox
+google-drive,openapi_spec_available,true,https://developers.google.com/discovery,Google Discovery Service JSON
+google-drive,webhooks,true,https://developers.google.com/drive/api/guides/push,Push notifications webhooks
+google-drive,verdict,ship_with_setup_friction,https://developers.google.com/drive,Sensitive scopes require verification screen
+google-drive,main_blocker,Google OAuth consent screen verification for restricted scopes,https://developers.google.com/drive,App verification required for production
+google-drive,difficulty_1_to_5,3,https://developers.google.com/drive,OAuth scope approval friction
+
+stripe,auth_methods,"[""bearer_token"", ""api_key""]",https://docs.stripe.com/api/authentication,Secret API keys and Restricted tokens
+stripe,self_serve,free_self_serve,https://stripe.com,Instant signup with full test mode
+stripe,api_style,rest,https://docs.stripe.com/api,Idempotent JSON REST API
+stripe,api_breadth,large,https://docs.stripe.com/api,Full billing payments and financial infrastructure
+stripe,existing_mcp,community,https://github.com/stripe/agent-toolkit,Stripe agent toolkit and MCP
+stripe,sandbox_available,true,https://docs.stripe.com/testing,Dedicated mock test environment
+stripe,openapi_spec_available,true,https://github.com/stripe/openapi,Official OpenAPI spec repository
+stripe,webhooks,true,https://docs.stripe.com/webhooks,Signed webhook events with CLI forwarder
+stripe,verdict,ship_now,https://docs.stripe.com/api,World-class developer experience
+stripe,main_blocker,none,https://docs.stripe.com/api,No blocking impediments
+stripe,difficulty_1_to_5,1,https://docs.stripe.com/api,Seamless onboarding and mocking
+
+webflow,auth_methods,"[""oauth2"", ""bearer_token""]",https://developers.webflow.com/data/docs/authorization,Workspace/site tokens and OAuth2
+webflow,self_serve,free_self_serve,https://webflow.com/dashboard,Free account dashboard token generation
+webflow,api_style,rest,https://developers.webflow.com/data/reference/overview,REST v2 JSON API
+webflow,api_breadth,medium,https://developers.webflow.com/data/reference/overview,Sites collections forms users
+webflow,existing_mcp,community,https://github.com/modelcontextprotocol/servers,Community MCP servers
+webflow,sandbox_available,false,https://developers.webflow.com,Test on development sites
+webflow,openapi_spec_available,true,https://developers.webflow.com,OpenAPI v3 available
+webflow,webhooks,true,https://developers.webflow.com/data/reference/webhooks,Webhooks supported
+webflow,verdict,ship_now,https://developers.webflow.com,Ready for immediate integration
+webflow,main_blocker,none,https://developers.webflow.com,No blocking impediments
+webflow,difficulty_1_to_5,2,https://developers.webflow.com,Clean REST API
+
+greenhouse,auth_methods,"[""basic"", ""api_key""]",https://developers.greenhouse.io/harvest.html,Harvest API key passed via Basic auth
+greenhouse,self_serve,paid_required,https://greenhouse.io,Requires active enterprise Greenhouse contract
+greenhouse,api_style,rest,https://developers.greenhouse.io/harvest.html,REST JSON API
+greenhouse,api_breadth,medium,https://developers.greenhouse.io/harvest.html,Candidates jobs applications
+greenhouse,existing_mcp,community,https://github.com/modelcontextprotocol/servers,Community implementations
+greenhouse,sandbox_available,true,https://developers.greenhouse.io,Customer sandbox available
+greenhouse,openapi_spec_available,false,https://developers.greenhouse.io,No public OpenAPI file
+greenhouse,webhooks,true,https://developers.greenhouse.io/webhooks.html,Admin webhooks supported
+greenhouse,verdict,ship_with_setup_friction,https://developers.greenhouse.io,Requires paid enterprise subscription
+greenhouse,main_blocker,Requires paid enterprise Greenhouse subscription,https://greenhouse.io,Enterprise barrier
+greenhouse,difficulty_1_to_5,3,https://developers.greenhouse.io,Customer account dependency
+
+posthog,auth_methods,"[""bearer_token"", ""api_key""]",https://posthog.com/docs/api,Personal and Project API keys
+posthog,self_serve,free_self_serve,https://posthog.com,Generous free tier with instant API keys
+posthog,api_style,rest,https://posthog.com/docs/api,REST JSON API
+posthog,api_breadth,large,https://posthog.com/docs/api,Events persons feature flags dashboards
+posthog,existing_mcp,official,https://github.com/PostHog/posthog,Official PostHog MCP server
+posthog,sandbox_available,false,https://posthog.com,Test project in workspace
+posthog,openapi_spec_available,true,https://us.posthog.com/api/schema,Public OpenAPI schema endpoint
+posthog,webhooks,true,https://posthog.com/docs/libraries/webhooks,Webhooks and actions
+posthog,verdict,ship_now,https://posthog.com/docs/api,Excellent developer platform
+posthog,main_blocker,none,https://posthog.com/docs/api,No blocking impediments
+posthog,difficulty_1_to_5,1,https://posthog.com/docs/api,Easy self-serve API
+
+shopify,auth_methods,"[""oauth2"", ""bearer_token""]",https://shopify.dev/docs/api/admin-rest,Admin API access tokens and Partner OAuth
+shopify,self_serve,free_self_serve,https://partners.shopify.com,Free Shopify Partner account with dev stores
+shopify,api_style,rest,https://shopify.dev/docs/api/admin-rest,REST and GraphQL Admin APIs
+shopify,api_breadth,large,https://shopify.dev/docs/api/admin-rest,Comprehensive e-commerce surface
+shopify,existing_mcp,community,https://github.com/modelcontextprotocol/servers,Community MCP servers
+shopify,sandbox_available,true,https://shopify.dev/docs/apps/tools/development-stores,Unlimited development stores
+shopify,openapi_spec_available,false,https://shopify.dev,GraphQL schema and REST docs
+shopify,webhooks,true,https://shopify.dev/docs/api/admin-rest/current/resources/webhook,Mandatory and custom webhooks
+shopify,verdict,ship_now,https://shopify.dev,Comprehensive API with partner ecosystem
+shopify,main_blocker,none,https://shopify.dev,No blocking impediments
+shopify,difficulty_1_to_5,2,https://shopify.dev,Partner app architecture
+
+linear,auth_methods,"[""oauth2"", ""api_key""]",https://developers.linear.app/docs/graphql/working-with-the-graphql-api,Personal API keys and OAuth2
+linear,self_serve,free_self_serve,https://linear.app,Free tier provides instant API key
+linear,api_style,graphql,https://developers.linear.app/docs/graphql/working-with-the-graphql-api,GraphQL API exclusively
+linear,api_breadth,large,https://developers.linear.app/docs/graphql/working-with-the-graphql-api,Full issue tracking and project platform
+linear,existing_mcp,community,https://github.com/modelcontextprotocol/servers,Community MCP servers
+linear,sandbox_available,false,https://linear.app,Test inside free workspace
+linear,openapi_spec_available,false,https://developers.linear.app,GraphQL schema only
+linear,webhooks,true,https://developers.linear.app/docs/graphql/webhooks,GraphQL webhook mutations
+linear,verdict,ship_now,https://developers.linear.app,Pure GraphQL but straightforward
+linear,main_blocker,none,https://developers.linear.app,No blocking impediments
+linear,difficulty_1_to_5,2,https://developers.linear.app,GraphQL client needed
+
+attio,auth_methods,"[""oauth2"", ""bearer_token""]",https://developers.attio.com/docs/authentication,Bearer API keys and OAuth2
+attio,self_serve,free_self_serve,https://attio.com,Free tier allows generating API keys
+attio,api_style,rest,https://developers.attio.com/reference/overview,REST v2 JSON API
+attio,api_breadth,medium,https://developers.attio.com/reference/overview,CRM records lists attributes
+attio,existing_mcp,community,https://github.com/modelcontextprotocol/servers,Community MCP servers
+attio,sandbox_available,false,https://attio.com,Test workspace
+attio,openapi_spec_available,true,https://api.attio.com/openapi.json,OpenAPI JSON spec
+attio,webhooks,true,https://developers.attio.com/reference/webhooks,Webhooks supported
+attio,verdict,ship_now,https://developers.attio.com,Clean developer portal
+attio,main_blocker,none,https://developers.attio.com,No blocking impediments
+attio,difficulty_1_to_5,2,https://developers.attio.com,Standard REST API
+
+whatsapp-business,auth_methods,"[""bearer_token"", ""oauth2""]",https://developers.facebook.com/docs/whatsapp/cloud-api/get-started,Meta Graph API System User Tokens
+whatsapp-business,self_serve,approval_required,https://developers.facebook.com/docs/whatsapp/cloud-api,Requires Meta Business Verification and App Review
+whatsapp-business,api_style,rest,https://developers.facebook.com/docs/whatsapp/cloud-api,Meta Graph REST API
+whatsapp-business,api_breadth,medium,https://developers.facebook.com/docs/whatsapp/cloud-api/reference,Messages media templates
+whatsapp-business,existing_mcp,community,https://github.com/modelcontextprotocol/servers,Community implementations
+whatsapp-business,sandbox_available,true,https://developers.facebook.com/docs/whatsapp/cloud-api/get-started,Test phone number with recipient restrictions
+whatsapp-business,openapi_spec_available,false,https://developers.facebook.com,Meta Graph API docs
+whatsapp-business,webhooks,true,https://developers.facebook.com/docs/whatsapp/cloud-api/webhooks,Meta Webhooks
+whatsapp-business,verdict,ship_with_setup_friction,https://developers.facebook.com/docs/whatsapp,Meta Business Verification required
+whatsapp-business,main_blocker,Meta Business Verification and message template pre-approval,https://developers.facebook.com/docs/whatsapp,Business compliance gate
+whatsapp-business,difficulty_1_to_5,4,https://developers.facebook.com/docs/whatsapp,Friction in setup and approval
+
+sentry,auth_methods,"[""bearer_token""]",https://docs.sentry.io/api/auth,User Auth Tokens and Internal Integration tokens
+sentry,self_serve,free_self_serve,https://sentry.io,Free plan allows creating tokens
+sentry,api_style,rest,https://docs.sentry.io/api,REST JSON API
+sentry,api_breadth,large,https://docs.sentry.io/api,Issues projects alerts events
+sentry,existing_mcp,official,https://github.com/getsentry/sentry-mcp,Official Sentry MCP server
+sentry,sandbox_available,false,https://docs.sentry.io,Test project
+sentry,openapi_spec_available,true,https://github.com/getsentry/sentry,OpenAPI spec in repo
+sentry,webhooks,true,https://docs.sentry.io/product/integrations/integration-platform/webhooks,Integration platform webhooks
+sentry,verdict,ship_now,https://docs.sentry.io/api,Ready for immediate integration
+sentry,main_blocker,none,https://docs.sentry.io/api,No blocking impediments
+sentry,difficulty_1_to_5,2,https://docs.sentry.io/api,Standard REST API
+
+notebooklm,auth_methods,"[""none""]",https://notebooklm.google.com,No official public API exists
+notebooklm,self_serve,unknown,https://notebooklm.google.com,Web UI only
+notebooklm,api_style,none,https://notebooklm.google.com,No API exposed
+notebooklm,api_breadth,none,https://notebooklm.google.com,No endpoints
+notebooklm,existing_mcp,community,https://github.com/modelcontextprotocol/servers,Unofficial scraping wrapper
+notebooklm,sandbox_available,false,https://notebooklm.google.com,No sandbox
+notebooklm,openapi_spec_available,false,https://notebooklm.google.com,No spec
+notebooklm,webhooks,false,https://notebooklm.google.com,No webhooks
+notebooklm,verdict,blocked,https://notebooklm.google.com,No public API published by Google
+notebooklm,main_blocker,No official public API published by Google,https://notebooklm.google.com,Missing developer platform
+notebooklm,difficulty_1_to_5,5,https://notebooklm.google.com,Requires reverse-engineered browser automation
+
+brex,auth_methods,"[""oauth2"", ""bearer_token""]",https://developer.brex.com/openapi,User tokens and Brex App OAuth
+brex,self_serve,paid_required,https://brex.com,Requires approved corporate Brex account
+brex,api_style,rest,https://developer.brex.com/openapi,REST JSON API
+brex,api_breadth,medium,https://developer.brex.com/openapi,Transactions expenses budgets
+brex,existing_mcp,none,https://developer.brex.com,No known MCP server
+brex,sandbox_available,true,https://developer.brex.com/docs/sandbox,Dedicated simulation sandbox
+brex,openapi_spec_available,true,https://developer.brex.com/openapi/openapi.json,Public OpenAPI JSON spec
+brex,webhooks,true,https://developer.brex.com/openapi/webhooks_api,Webhooks API
+brex,verdict,ship_with_setup_friction,https://developer.brex.com,Requires approved Brex corporate account
+brex,main_blocker,Requires approved corporate Brex account,https://brex.com,Fintech onboarding verification
+brex,difficulty_1_to_5,3,https://developer.brex.com,Customer verification gate
+
+typeform,auth_methods,"[""oauth2"", ""bearer_token""]",https://www.typeform.com/developers/get-started/personal-access-token,Personal Access Tokens and OAuth2
+typeform,self_serve,free_self_serve,https://www.typeform.com,Free account provides instant API tokens
+typeform,api_style,rest,https://www.typeform.com/developers/create/reference,REST JSON API
+typeform,api_breadth,medium,https://www.typeform.com/developers,Forms responses webhooks
+typeform,existing_mcp,community,https://github.com/modelcontextprotocol/servers,Community MCP servers
+typeform,sandbox_available,false,https://www.typeform.com,Test forms in workspace
+typeform,openapi_spec_available,true,https://api.typeform.com,OpenAPI spec available
+typeform,webhooks,true,https://www.typeform.com/developers/webhooks,Form submission webhooks
+typeform,verdict,ship_now,https://www.typeform.com/developers,Easy self-serve API
+typeform,main_blocker,none,https://www.typeform.com/developers,No blocking impediments
+typeform,difficulty_1_to_5,2,https://www.typeform.com/developers,Standard REST API
+
+workday,auth_methods,"[""oauth2"", ""basic""]",https://community.workday.com/api,OAuth 2.0 and WS-Security SOAP
+workday,self_serve,partnership_or_sales_gated,https://workday.com,Enterprise sales and customer tenant access only
+workday,api_style,soap,https://community.workday.com/api,SOAP WSDL and REST Web Services
+workday,api_breadth,large,https://community.workday.com/api,Full enterprise HCM and Finance
+workday,existing_mcp,none,https://workday.com,No MCP server
+workday,sandbox_available,true,https://community.workday.com,Customer implementation tenants
+workday,openapi_spec_available,false,https://community.workday.com,WSDL XML schemas
+workday,webhooks,false,https://community.workday.com,Outbound EIB rather than HTTP webhooks
+workday,verdict,needs_outreach,https://workday.com,Enterprise gated customer tenant
+workday,main_blocker,Requires Workday customer tenant and enterprise partner certification,https://workday.com,Sales gated
+workday,difficulty_1_to_5,5,https://workday.com,SOAP complexity and strict access gates
+
+sherlock,auth_methods,"[""none""]",https://github.com/sherlock-project/sherlock,Command-line open source tool
+sherlock,self_serve,free_self_serve,https://github.com/sherlock-project/sherlock,Open source MIT license
+sherlock,api_style,cli,https://github.com/sherlock-project/sherlock,Python CLI
+sherlock,api_breadth,small,https://github.com/sherlock-project/sherlock,Single username discovery command
+sherlock,existing_mcp,community,https://github.com/modelcontextprotocol/servers,Community CLI MCP
+sherlock,sandbox_available,false,https://github.com/sherlock-project/sherlock,Local tool
+sherlock,openapi_spec_available,false,https://github.com/sherlock-project/sherlock,No web API
+sherlock,webhooks,false,https://github.com/sherlock-project/sherlock,No webhooks
+sherlock,verdict,skill_or_cli_only,https://github.com/sherlock-project/sherlock,Local CLI tool without hosted API
+sherlock,main_blocker,Local CLI tool without hosted API,https://github.com/sherlock-project/sherlock,No web service
+sherlock,difficulty_1_to_5,3,https://github.com/sherlock-project/sherlock,Needs CLI wrapper or agent skill
+
+amazon-selling-partner,auth_methods,"[""other""]",https://developer-docs.amazon.com/sp-api/docs/authorizing-selling-partner-api-applications,AWS SigV4 signature plus LWA OAuth2 access token
+amazon-selling-partner,self_serve,approval_required,https://developer-docs.amazon.com/sp-api,Requires Amazon Professional Seller account and Developer Profile vetting
+amazon-selling-partner,api_style,rest,https://developer-docs.amazon.com/sp-api/docs/what-is-the-selling-partner-api,REST JSON API
+amazon-selling-partner,api_breadth,large,https://developer-docs.amazon.com/sp-api,Orders feeds listings fulfillment
+amazon-selling-partner,existing_mcp,community,https://github.com/modelcontextprotocol/servers,Community MCP servers
+amazon-selling-partner,sandbox_available,true,https://developer-docs.amazon.com/sp-api/docs/the-selling-partner-api-sandbox,Static and dynamic sandbox endpoints
+amazon-selling-partner,openapi_spec_available,true,https://github.com/amzn/selling-partner-api-models,Official OpenAPI models on GitHub
+amazon-selling-partner,webhooks,true,https://developer-docs.amazon.com/sp-api/docs/notifications-api-v1-use-case-guide,AWS SQS / EventBridge notifications
+amazon-selling-partner,verdict,ship_with_setup_friction,https://developer-docs.amazon.com/sp-api,Dual AWS auth and developer approval required
+amazon-selling-partner,main_blocker,AWS Signature V4 dual auth and Amazon Developer Profile vetting,https://developer-docs.amazon.com/sp-api,High security review barrier
+amazon-selling-partner,difficulty_1_to_5,5,https://developer-docs.amazon.com/sp-api,Complex AWS signing and data access roles

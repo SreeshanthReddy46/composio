@@ -1,0 +1,37 @@
+name: Composio App Research Pipeline
+
+on:
+  workflow_dispatch:
+    inputs:
+      concurrency:
+        description: 'Concurrency limit'
+        required: false
+        default: '10'
+      resume:
+        description: 'Resume previous run'
+        type: boolean
+        default: false
+
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install uv
+        uses: astral-sh/setup-uv@v2
+      - name: Set up Python
+        run: uv python install 3.11
+      - name: Install dependencies
+        run: uv sync --frozen
+      - name: Run research pipeline
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          VERIFIER_API_KEY: ${{ secrets.VERIFIER_API_KEY }}
+          COMPOSIO_API_KEY: ${{ secrets.COMPOSIO_API_KEY }}
+        run: |
+          python -m src.research.cli run --concurrency ${{ github.event.inputs.concurrency }}
+      - name: Upload results artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: research-results
+          path: data/

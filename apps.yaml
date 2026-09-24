@@ -1,0 +1,419 @@
+# Category 1: Productivity & Collaboration
+- id: notion
+  name: Notion
+  category: Productivity & Collaboration
+  hint_url: https://developers.notion.com
+- id: slack
+  name: Slack
+  category: Productivity & Collaboration
+  hint_url: https://api.slack.com
+- id: linear
+  name: Linear
+  category: Productivity & Collaboration
+  hint_url: https://developers.linear.app
+- id: asana
+  name: Asana
+  category: Productivity & Collaboration
+  hint_url: https://developers.asana.com
+- id: trello
+  name: Trello
+  category: Productivity & Collaboration
+  hint_url: https://developer.atlassian.com/cloud/trello
+- id: clickup
+  name: ClickUp
+  category: Productivity & Collaboration
+  hint_url: https://clickup.com/api
+- id: monday
+  name: Monday.com
+  category: Productivity & Collaboration
+  hint_url: https://developer.monday.com
+- id: jira
+  name: Jira
+  category: Productivity & Collaboration
+  hint_url: https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro
+- id: basecamp
+  name: Basecamp
+  category: Productivity & Collaboration
+  hint_url: https://github.com/basecamp/bc3-api
+- id: airtable
+  name: Airtable
+  category: Productivity & Collaboration
+  hint_url: https://airtable.com/developers/web/api/introduction
+
+# Category 2: CRM & Sales
+- id: hubspot
+  name: HubSpot
+  category: CRM & Sales
+  hint_url: https://developers.hubspot.com
+- id: salesforce
+  name: Salesforce
+  category: CRM & Sales
+  hint_url: https://developer.salesforce.com/docs
+- id: pipedrive
+  name: Pipedrive
+  category: CRM & Sales
+  hint_url: https://developers.pipedrive.com
+- id: close
+  name: Close
+  category: CRM & Sales
+  hint_url: https://developer.close.com
+- id: zoho-crm
+  name: Zoho CRM
+  category: CRM & Sales
+  hint_url: https://www.zoho.com/crm/developer/docs/api/v3
+- id: apollo
+  name: Apollo.io
+  category: CRM & Sales
+  hint_url: https://apolloio.github.io/apollo-api-docs
+- id: attio
+  name: Attio
+  category: CRM & Sales
+  hint_url: https://developers.attio.com
+- id: outreach
+  name: Outreach
+  category: CRM & Sales
+  hint_url: https://api.outreach.io/api
+- id: salesloft
+  name: Salesloft
+  category: CRM & Sales
+  hint_url: https://developers.salesloft.com
+- id: freshsales
+  name: Freshsales
+  category: CRM & Sales
+  hint_url: https://crmsupport.freshworks.com/support/solutions/articles/50000002167-api-documentation
+
+# Category 3: Communication & Messaging
+- id: gmail
+  name: Gmail
+  category: Communication & Messaging
+  hint_url: https://developers.google.com/gmail/api
+- id: sendgrid
+  name: SendGrid
+  category: Communication & Messaging
+  hint_url: https://docs.sendgrid.com/api-reference
+- id: mailchimp
+  name: Mailchimp
+  category: Communication & Messaging
+  hint_url: https://mailchimp.com/developer/marketing/api
+- id: postmark
+  name: Postmark
+  category: Communication & Messaging
+  hint_url: https://postmarkapp.com/developer
+- id: resend
+  name: Resend
+  category: Communication & Messaging
+  hint_url: https://resend.com/docs/api-reference/introduction
+- id: twilio
+  name: Twilio
+  category: Communication & Messaging
+  hint_url: https://www.twilio.com/docs/usage/api
+- id: intercom
+  name: Intercom
+  category: Communication & Messaging
+  hint_url: https://developers.intercom.com
+- id: zendesk
+  name: Zendesk
+  category: Communication & Messaging
+  hint_url: https://developer.zendesk.com/api-reference
+- id: front
+  name: Front
+  category: Communication & Messaging
+  hint_url: https://dev.frontapp.com/reference
+- id: discord
+  name: Discord
+  category: Communication & Messaging
+  hint_url: https://discord.com/developers/docs/intro
+
+# Category 4: Developer Tools & Cloud
+- id: github
+  name: GitHub
+  category: Developer Tools & Cloud
+  hint_url: https://docs.github.com/en/rest
+- id: gitlab
+  name: GitLab
+  category: Developer Tools & Cloud
+  hint_url: https://docs.gitlab.com/ee/api/rest
+- id: bitbucket
+  name: Bitbucket
+  category: Developer Tools & Cloud
+  hint_url: https://developer.atlassian.com/cloud/bitbucket/rest/intro
+- id: sentry
+  name: Sentry
+  category: Developer Tools & Cloud
+  hint_url: https://docs.sentry.io/api
+- id: datadog
+  name: Datadog
+  category: Developer Tools & Cloud
+  hint_url: https://docs.datadoghq.com/api/latest
+- id: pagerduty
+  name: PagerDuty
+  category: Developer Tools & Cloud
+  hint_url: https://developer.pagerduty.com/api-reference
+- id: vercel
+  name: Vercel
+  category: Developer Tools & Cloud
+  hint_url: https://vercel.com/docs/rest-api
+- id: render
+  name: Render
+  category: Developer Tools & Cloud
+  hint_url: https://api-docs.render.com/reference
+- id: supabase
+  name: Supabase
+  category: Developer Tools & Cloud
+  hint_url: https://supabase.com/docs/reference/api/introduction
+- id: postman
+  name: Postman
+  category: Developer Tools & Cloud
+  hint_url: https://learning.postman.com/docs/developer/intro-api
+
+# Category 5: Document & Storage
+- id: google-drive
+  name: Google Drive
+  category: Document & Storage
+  hint_url: https://developers.google.com/drive/api/v3/about-sdk
+- id: dropbox
+  name: Dropbox
+  category: Document & Storage
+  hint_url: https://www.dropbox.com/developers/documentation/http/overview
+- id: box
+  name: Box
+  category: Document & Storage
+  hint_url: https://developer.box.com/reference
+- id: onedrive
+  name: OneDrive
+  category: Document & Storage
+  hint_url: https://learn.microsoft.com/en-us/graph/api/resources/onedrive
+- id: coda
+  name: Coda
+  category: Document & Storage
+  hint_url: https://coda.io/developers/apis/v1
+- id: evernote
+  name: Evernote
+  category: Document & Storage
+  hint_url: https://dev.evernote.com/doc
+- id: confluence
+  name: Confluence
+  category: Document & Storage
+  hint_url: https://developer.atlassian.com/cloud/confluence/rest/v2/intro
+- id: lucidchart
+  name: Lucidchart
+  category: Document & Storage
+  hint_url: https://developer.lucid.co/rest-api
+- id: miro
+  name: Miro
+  category: Document & Storage
+  hint_url: https://developers.miro.com/reference
+- id: figma
+  name: Figma
+  category: Document & Storage
+  hint_url: https://www.figma.com/developers/api
+
+# Category 6: Finance & Payments
+- id: stripe
+  name: Stripe
+  category: Finance & Payments
+  hint_url: https://docs.stripe.com/api
+- id: quickbooks
+  name: QuickBooks
+  category: Finance & Payments
+  hint_url: https://developer.intuit.com/app/developer/qbo/docs/api/accounting/most-popular-queries
+- id: xero
+  name: Xero
+  category: Finance & Payments
+  hint_url: https://developer.xero.com/documentation/api/accounting/overview
+- id: freshbooks
+  name: FreshBooks
+  category: Finance & Payments
+  hint_url: https://www.freshbooks.com/api/start
+- id: brex
+  name: Brex
+  category: Finance & Payments
+  hint_url: https://developer.brex.com/openapi
+- id: ramp
+  name: Ramp
+  category: Finance & Payments
+  hint_url: https://docs.ramp.com/developer-api/rest
+- id: wave
+  name: Wave
+  category: Finance & Payments
+  hint_url: https://developer.waveapps.com/hc/en-us
+- id: recurly
+  name: Recurly
+  category: Finance & Payments
+  hint_url: https://developers.recurly.com/api/v2021-02-25
+- id: chargebee
+  name: Chargebee
+  category: Finance & Payments
+  hint_url: https://apidocs.chargebee.com/docs/api
+- id: gusto
+  name: Gusto
+  category: Finance & Payments
+  hint_url: https://docs.gusto.com/embedded-payroll/reference
+
+# Category 7: Marketing & CMS
+- id: buffer
+  name: Buffer
+  category: Marketing & CMS
+  hint_url: https://buffer.com/developers/api
+- id: hootsuite
+  name: Hootsuite
+  category: Marketing & CMS
+  hint_url: https://developer.hootsuite.com/docs
+- id: typeform
+  name: Typeform
+  category: Marketing & CMS
+  hint_url: https://www.typeform.com/developers
+- id: webflow
+  name: Webflow
+  category: Marketing & CMS
+  hint_url: https://developers.webflow.com
+- id: wordpress
+  name: WordPress
+  category: Marketing & CMS
+  hint_url: https://developer.wordpress.org/rest-api
+- id: ghost
+  name: Ghost
+  category: Marketing & CMS
+  hint_url: https://ghost.org/docs/content-api
+- id: substack
+  name: Substack
+  category: Marketing & CMS
+  hint_url: https://substack.com
+- id: activecampaign
+  name: ActiveCampaign
+  category: Marketing & CMS
+  hint_url: https://developers.activecampaign.com/reference
+- id: klaviyo
+  name: Klaviyo
+  category: Marketing & CMS
+  hint_url: https://developers.klaviyo.com/en/reference/api-overview
+- id: convertkit
+  name: ConvertKit
+  category: Marketing & CMS
+  hint_url: https://developers.convertkit.com
+
+# Category 8: HR & People
+- id: greenhouse
+  name: Greenhouse
+  category: HR & People
+  hint_url: https://developers.greenhouse.io/harvest.html
+- id: lever
+  name: Lever
+  category: HR & People
+  hint_url: https://hire.lever.co/developer/documentation
+- id: workday
+  name: Workday
+  category: HR & People
+  hint_url: https://community.workday.com/api
+- id: bamboohr
+  name: BambooHR
+  category: HR & People
+  hint_url: https://documentation.bamboohr.com/reference
+- id: rippling
+  name: Rippling
+  category: HR & People
+  hint_url: https://developer.rippling.com/docs
+- id: deel
+  name: Deel
+  category: HR & People
+  hint_url: https://developer.deel.com/docs
+- id: remote
+  name: Remote
+  category: HR & People
+  hint_url: https://remote.com/resources/api
+- id: ashby
+  name: Ashby
+  category: HR & People
+  hint_url: https://developers.ashbyhq.com/reference
+- id: workable
+  name: Workable
+  category: HR & People
+  hint_url: https://workable.readme.io/reference
+- id: recruitee
+  name: Recruitee
+  category: HR & People
+  hint_url: https://docs.recruitee.com/reference
+
+# Category 9: Data & Analytics
+- id: snowflake
+  name: Snowflake
+  category: Data & Analytics
+  hint_url: https://docs.snowflake.com/en/developer-guide/sql-api/index
+- id: bigquery
+  name: BigQuery
+  category: Data & Analytics
+  hint_url: https://cloud.google.com/bigquery/docs/reference/rest
+- id: mixpanel
+  name: Mixpanel
+  category: Data & Analytics
+  hint_url: https://developer.mixpanel.com/reference/overview
+- id: amplitude
+  name: Amplitude
+  category: Data & Analytics
+  hint_url: https://www.docs.developers.amplitude.com/analytics/apis
+- id: segment
+  name: Segment
+  category: Data & Analytics
+  hint_url: https://segment.com/docs/api
+- id: posthog
+  name: PostHog
+  category: Data & Analytics
+  hint_url: https://posthog.com/docs/api
+- id: fivetran
+  name: Fivetran
+  category: Data & Analytics
+  hint_url: https://fivetran.com/docs/rest-api
+- id: tableau
+  name: Tableau
+  category: Data & Analytics
+  hint_url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm
+- id: looker
+  name: Looker
+  category: Data & Analytics
+  hint_url: https://cloud.google.com/looker/docs/reference/api-and-integration
+- id: metabase
+  name: Metabase
+  category: Data & Analytics
+  hint_url: https://www.metabase.com/docs/latest/api-documentation
+
+# Category 10: E-commerce & Logistics
+- id: shopify
+  name: Shopify
+  category: E-commerce & Logistics
+  hint_url: https://shopify.dev/docs/api/admin-rest
+- id: woocommerce
+  name: WooCommerce
+  category: E-commerce & Logistics
+  hint_url: https://woocommerce.github.io/woocommerce-rest-api-docs
+- id: bigcommerce
+  name: BigCommerce
+  category: E-commerce & Logistics
+  hint_url: https://developer.bigcommerce.com/docs/rest
+- id: magento
+  name: Magento
+  category: E-commerce & Logistics
+  hint_url: https://developer.adobe.com/commerce/webapi/rest
+- id: square
+  name: Square
+  category: E-commerce & Logistics
+  hint_url: https://developer.squareup.com/reference/square
+- id: gumroad
+  name: Gumroad
+  category: E-commerce & Logistics
+  hint_url: https://gumroad.com/api
+- id: etsy
+  name: Etsy
+  category: E-commerce & Logistics
+  hint_url: https://developers.etsy.com/documentation
+- id: printful
+  name: Printful
+  category: E-commerce & Logistics
+  hint_url: https://developers.printful.com/docs
+- id: shippo
+  name: Shippo
+  category: E-commerce & Logistics
+  hint_url: https://goshippo.com/docs/reference
+- id: shipstation
+  name: ShipStation
+  category: E-commerce & Logistics
+  hint_url: https://www.shipstation.com/docs/api

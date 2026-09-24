@@ -1,0 +1,189 @@
+{
+  "total_analyzed": 100,
+  "auth_distribution": {
+    "unknown": 52,
+    "api_key": 27,
+    "bearer_token": 15,
+    "oauth2": 23
+  },
+  "self_serve_vs_gated_by_category": {
+    "CRM & Sales": {
+      "self_serve": 3,
+      "gated": 1,
+      "unknown": 6,
+      "total": 10
+    },
+    "Communication & Messaging": {
+      "self_serve": 6,
+      "gated": 0,
+      "unknown": 4,
+      "total": 10
+    },
+    "Data & Analytics": {
+      "self_serve": 7,
+      "gated": 1,
+      "unknown": 2,
+      "total": 10
+    },
+    "Developer Tools & Cloud": {
+      "self_serve": 5,
+      "gated": 0,
+      "unknown": 5,
+      "total": 10
+    },
+    "Document & Storage": {
+      "self_serve": 3,
+      "gated": 1,
+      "unknown": 6,
+      "total": 10
+    },
+    "E-commerce & Logistics": {
+      "self_serve": 7,
+      "gated": 0,
+      "unknown": 3,
+      "total": 10
+    },
+    "Finance & Payments": {
+      "self_serve": 1,
+      "gated": 1,
+      "unknown": 8,
+      "total": 10
+    },
+    "HR & People": {
+      "self_serve": 3,
+      "gated": 0,
+      "unknown": 7,
+      "total": 10
+    },
+    "Marketing & CMS": {
+      "self_serve": 3,
+      "gated": 0,
+      "unknown": 7,
+      "total": 10
+    },
+    "Productivity & Collaboration": {
+      "self_serve": 7,
+      "gated": 1,
+      "unknown": 2,
+      "total": 10
+    }
+  },
+  "top_blockers": {
+    "unknown": 100
+  },
+  "verdict_tiers": {
+    "unknown": 100
+  },
+  "ranked_build_first_list": [
+    {
+      "id": "github",
+      "name": "GitHub",
+      "category": "Developer Tools & Cloud",
+      "verdict": "unknown",
+      "difficulty": 2,
+      "demand": 10,
+      "ease": 4,
+      "score": 76.0,
+      "rationale": "High demand tier (10/10), low setup friction (difficulty 2/5)"
+    },
+    {
+      "id": "shopify",
+      "name": "Shopify",
+      "category": "E-commerce & Logistics",
+      "verdict": "unknown",
+      "difficulty": 2,
+      "demand": 9,
+      "ease": 4,
+      "score": 57.6,
+      "rationale": "High demand tier (9/10), low setup friction (difficulty 2/5)"
+    },
+    {
+      "id": "figma",
+      "name": "Figma",
+      "category": "Document & Storage",
+      "verdict": "unknown",
+      "difficulty": 2,
+      "demand": 8,
+      "ease": 4,
+      "score": 54.4,
+      "rationale": "High demand tier (8/10), low setup friction (difficulty 2/5)"
+    },
+    {
+      "id": "gitlab",
+      "name": "GitLab",
+      "category": "Developer Tools & Cloud",
+      "verdict": "unknown",
+      "difficulty": 2,
+      "demand": 6,
+      "ease": 4,
+      "score": 45.6,
+      "rationale": "High demand tier (6/10), low setup friction (difficulty 2/5)"
+    },
+    {
+      "id": "asana",
+      "name": "Asana",
+      "category": "Productivity & Collaboration",
+      "verdict": "unknown",
+      "difficulty": 2,
+      "demand": 6,
+      "ease": 4,
+      "score": 40.8,
+      "rationale": "High demand tier (6/10), low setup friction (difficulty 2/5)"
+    },
+    {
+      "id": "printful",
+      "name": "Printful",
+      "category": "E-commerce & Logistics",
+      "verdict": "unknown",
+      "difficulty": 2,
+      "demand": 6,
+      "ease": 4,
+      "score": 40.8,
+      "rationale": "High demand tier (6/10), low setup friction (difficulty 2/5)"
+    },
+    {
+      "id": "basecamp",
+      "name": "Basecamp",
+      "category": "Productivity & Collaboration",
+      "verdict": "unknown",
+      "difficulty": 2,
+      "demand": 6,
+      "ease": 4,
+      "score": 40.8,
+      "rationale": "High demand tier (6/10), low setup friction (difficulty 2/5)"
+    },
+    {
+      "id": "bigquery",
+      "name": "BigQuery",
+      "category": "Data & Analytics",
+      "verdict": "unknown",
+      "difficulty": 2,
+      "demand": 6,
+      "ease": 4,
+      "score": 33.6,
+      "rationale": "High demand tier (6/10), low setup friction (difficulty 2/5)"
+    },
+    {
+      "id": "postmark",
+      "name": "Postmark",
+      "category": "Communication & Messaging",
+      "verdict": "unknown",
+      "difficulty": 2,
+      "demand": 6,
+      "ease": 4,
+      "score": 33.6,
+      "rationale": "High demand tier (6/10), low setup friction (difficulty 2/5)"
+    },
+    {
+      "id": "fivetran",
+      "name": "Fivetran",
+      "category": "Data & Analytics",
+      "verdict": "unknown",
+      "difficulty": 2,
+      "demand": 6,
+      "ease": 4,
+      "score": 33.6,
+      "rationale": "High demand tier (6/10), low setup friction (difficulty 2/5)"
+    }
+  ]
+}

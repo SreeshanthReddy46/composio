@@ -1,0 +1,3 @@
+app,field,extractor_answer,verifier_answer,url
+slack,existing_mcp,official,CHECK FAILED: Evidence URL https://github.com/modelcontextprotocol/servers/tree/main/src/slack not in 200 OK sources,https://github.com/modelcontextprotocol/servers/tree/main/src/slack
+gitlab,existing_mcp,official,CHECK FAILED: Evidence URL https://github.com/modelcontextprotocol/servers/tree/main/src/gitlab not in 200 OK sources,https://github.com/modelcontextprotocol/servers/tree/main/src/gitlab
