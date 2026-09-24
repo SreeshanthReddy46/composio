@@ -1,179 +1,179 @@
 app,field,agent,gold,root_cause
-notion,self_serve,unknown,free_self_serve,ambiguous plan tiers
-notion,api_breadth,unknown,medium,JS-rendered page
-notion,sandbox_available,,false,ambiguous plan tiers
-notion,openapi_spec_available,,true,JS-rendered page
-notion,webhooks,True,false,JS-rendered page
-notion,verdict,unknown,ship_now,ambiguous plan tiers
-notion,main_blocker,unknown,none,ambiguous plan tiers
-notion,difficulty_1_to_5,4,2,ambiguous plan tiers
-hubspot,auth_methods,['unknown'],"[""oauth2"", ""bearer_token""]",stale docs
-hubspot,self_serve,unknown,free_self_serve,ambiguous plan tiers
-hubspot,api_style,unknown,rest,stale docs
-hubspot,api_breadth,unknown,large,JS-rendered page
-hubspot,sandbox_available,,true,ambiguous plan tiers
-hubspot,openapi_spec_available,,true,JS-rendered page
-hubspot,verdict,unknown,ship_now,ambiguous plan tiers
-hubspot,main_blocker,unknown,none,ambiguous plan tiers
-hubspot,difficulty_1_to_5,4,2,ambiguous plan tiers
-twilio,auth_methods,['unknown'],"[""basic"", ""api_key""]",stale docs
-twilio,api_style,unknown,rest,stale docs
-twilio,api_breadth,unknown,large,JS-rendered page
-twilio,sandbox_available,,true,ambiguous plan tiers
-twilio,openapi_spec_available,,true,JS-rendered page
-twilio,verdict,unknown,ship_now,ambiguous plan tiers
-twilio,main_blocker,unknown,none,ambiguous plan tiers
-twilio,difficulty_1_to_5,4,2,ambiguous plan tiers
-github,auth_methods,['unknown'],"[""oauth2"", ""bearer_token""]",stale docs
-github,api_breadth,unknown,large,JS-rendered page
-github,sandbox_available,,false,ambiguous plan tiers
-github,webhooks,,true,JS-rendered page
-github,verdict,unknown,ship_now,ambiguous plan tiers
-github,main_blocker,unknown,none,ambiguous plan tiers
-github,difficulty_1_to_5,2,1,ambiguous plan tiers
-google-drive,self_serve,unknown,free_self_serve,ambiguous plan tiers
-google-drive,api_breadth,unknown,large,JS-rendered page
-google-drive,sandbox_available,,false,ambiguous plan tiers
-google-drive,openapi_spec_available,,true,JS-rendered page
-google-drive,webhooks,,true,JS-rendered page
-google-drive,verdict,unknown,ship_with_setup_friction,ambiguous plan tiers
-google-drive,main_blocker,unknown,Google OAuth consent screen verification for restricted scopes,ambiguous plan tiers
-google-drive,difficulty_1_to_5,4,3,ambiguous plan tiers
-stripe,self_serve,unknown,free_self_serve,ambiguous plan tiers
-stripe,api_style,unknown,rest,stale docs
-stripe,api_breadth,unknown,large,JS-rendered page
-stripe,openapi_spec_available,,true,JS-rendered page
-stripe,webhooks,,true,JS-rendered page
-stripe,verdict,unknown,ship_now,ambiguous plan tiers
-stripe,main_blocker,unknown,none,ambiguous plan tiers
-stripe,difficulty_1_to_5,4,1,ambiguous plan tiers
-webflow,auth_methods,['unknown'],"[""oauth2"", ""bearer_token""]",stale docs
-webflow,self_serve,unknown,free_self_serve,ambiguous plan tiers
-webflow,api_breadth,unknown,medium,JS-rendered page
-webflow,sandbox_available,,false,ambiguous plan tiers
-webflow,openapi_spec_available,,true,JS-rendered page
-webflow,verdict,unknown,ship_now,ambiguous plan tiers
-webflow,main_blocker,unknown,none,ambiguous plan tiers
-webflow,difficulty_1_to_5,4,2,ambiguous plan tiers
-greenhouse,self_serve,free_self_serve,paid_required,ambiguous plan tiers
-greenhouse,api_style,unknown,rest,stale docs
-greenhouse,api_breadth,unknown,medium,JS-rendered page
-greenhouse,sandbox_available,,true,ambiguous plan tiers
-greenhouse,openapi_spec_available,,false,JS-rendered page
-greenhouse,verdict,unknown,ship_with_setup_friction,ambiguous plan tiers
-greenhouse,main_blocker,unknown,Requires paid enterprise Greenhouse subscription,ambiguous plan tiers
-greenhouse,difficulty_1_to_5,4,3,ambiguous plan tiers
-posthog,api_style,unknown,rest,stale docs
-posthog,api_breadth,unknown,large,JS-rendered page
-posthog,sandbox_available,,false,ambiguous plan tiers
-posthog,openapi_spec_available,,true,JS-rendered page
-posthog,webhooks,,true,JS-rendered page
-posthog,verdict,unknown,ship_now,ambiguous plan tiers
-posthog,main_blocker,unknown,none,ambiguous plan tiers
-posthog,difficulty_1_to_5,4,1,ambiguous plan tiers
-shopify,auth_methods,['api_key'],"[""oauth2"", ""bearer_token""]",stale docs
-shopify,api_style,graphql,rest,stale docs
-shopify,api_breadth,unknown,large,JS-rendered page
-shopify,sandbox_available,,true,ambiguous plan tiers
-shopify,openapi_spec_available,,false,JS-rendered page
-shopify,webhooks,,true,JS-rendered page
-shopify,verdict,unknown,ship_now,ambiguous plan tiers
-shopify,main_blocker,unknown,none,ambiguous plan tiers
-linear,self_serve,unknown,free_self_serve,ambiguous plan tiers
-linear,api_breadth,unknown,large,JS-rendered page
-linear,sandbox_available,,false,ambiguous plan tiers
-linear,openapi_spec_available,,false,JS-rendered page
-linear,webhooks,,true,JS-rendered page
-linear,verdict,unknown,ship_now,ambiguous plan tiers
-linear,main_blocker,unknown,none,ambiguous plan tiers
-linear,difficulty_1_to_5,4,2,ambiguous plan tiers
-attio,auth_methods,['unknown'],"[""oauth2"", ""bearer_token""]",stale docs
-attio,self_serve,unknown,free_self_serve,ambiguous plan tiers
-attio,api_breadth,unknown,medium,JS-rendered page
-attio,sandbox_available,,false,ambiguous plan tiers
-attio,openapi_spec_available,,true,JS-rendered page
-attio,verdict,unknown,ship_now,ambiguous plan tiers
-attio,main_blocker,unknown,none,ambiguous plan tiers
-attio,difficulty_1_to_5,4,2,ambiguous plan tiers
-whatsapp-business,auth_methods,missing,"[""bearer_token"", ""oauth2""]",stale docs
-whatsapp-business,self_serve,missing,approval_required,ambiguous plan tiers
-whatsapp-business,api_style,missing,rest,stale docs
-whatsapp-business,api_breadth,missing,medium,JS-rendered page
-whatsapp-business,existing_mcp,missing,community,JS-rendered page
-whatsapp-business,sandbox_available,missing,true,ambiguous plan tiers
-whatsapp-business,openapi_spec_available,missing,false,JS-rendered page
-whatsapp-business,webhooks,missing,true,JS-rendered page
-whatsapp-business,verdict,missing,ship_with_setup_friction,ambiguous plan tiers
-whatsapp-business,main_blocker,missing,Meta Business Verification and message template pre-approval,ambiguous plan tiers
-whatsapp-business,difficulty_1_to_5,missing,4,ambiguous plan tiers
-sentry,auth_methods,['unknown'],"[""bearer_token""]",stale docs
-sentry,self_serve,trial_self_serve,free_self_serve,ambiguous plan tiers
-sentry,api_style,unknown,rest,stale docs
-sentry,api_breadth,unknown,large,JS-rendered page
-sentry,sandbox_available,,false,ambiguous plan tiers
-sentry,openapi_spec_available,,true,JS-rendered page
-sentry,webhooks,,true,JS-rendered page
-sentry,verdict,unknown,ship_now,ambiguous plan tiers
-sentry,main_blocker,unknown,none,ambiguous plan tiers
-sentry,difficulty_1_to_5,4,2,ambiguous plan tiers
-notebooklm,auth_methods,missing,"[""none""]",wrong entity
-notebooklm,self_serve,missing,unknown,wrong entity
-notebooklm,api_style,missing,none,wrong entity
-notebooklm,api_breadth,missing,none,wrong entity
-notebooklm,existing_mcp,missing,community,wrong entity
-notebooklm,sandbox_available,missing,false,wrong entity
-notebooklm,openapi_spec_available,missing,false,wrong entity
-notebooklm,webhooks,missing,false,wrong entity
-notebooklm,verdict,missing,blocked,wrong entity
-notebooklm,main_blocker,missing,No official public API published by Google,wrong entity
-notebooklm,difficulty_1_to_5,missing,5,wrong entity
-brex,self_serve,unknown,paid_required,ambiguous plan tiers
-brex,api_style,unknown,rest,stale docs
-brex,api_breadth,unknown,medium,JS-rendered page
-brex,existing_mcp,community,none,JS-rendered page
-brex,sandbox_available,,true,ambiguous plan tiers
-brex,openapi_spec_available,,true,JS-rendered page
-brex,webhooks,,true,JS-rendered page
-brex,verdict,unknown,ship_with_setup_friction,ambiguous plan tiers
-brex,main_blocker,unknown,Requires approved corporate Brex account,ambiguous plan tiers
-brex,difficulty_1_to_5,4,3,ambiguous plan tiers
-typeform,auth_methods,['unknown'],"[""oauth2"", ""bearer_token""]",stale docs
-typeform,api_style,unknown,rest,stale docs
-typeform,api_breadth,unknown,medium,JS-rendered page
-typeform,sandbox_available,,false,ambiguous plan tiers
-typeform,openapi_spec_available,,true,JS-rendered page
-typeform,verdict,unknown,ship_now,ambiguous plan tiers
-typeform,main_blocker,unknown,none,ambiguous plan tiers
-typeform,difficulty_1_to_5,4,2,ambiguous plan tiers
-workday,auth_methods,['unknown'],"[""oauth2"", ""basic""]",stale docs
-workday,self_serve,unknown,partnership_or_sales_gated,ambiguous plan tiers
-workday,api_style,unknown,soap,stale docs
-workday,api_breadth,unknown,large,JS-rendered page
-workday,sandbox_available,,true,ambiguous plan tiers
-workday,openapi_spec_available,,false,JS-rendered page
-workday,webhooks,,false,JS-rendered page
-workday,verdict,unknown,needs_outreach,ambiguous plan tiers
-workday,main_blocker,unknown,Requires Workday customer tenant and enterprise partner certification,ambiguous plan tiers
-workday,difficulty_1_to_5,4,5,ambiguous plan tiers
-sherlock,auth_methods,missing,"[""none""]",wrong entity
-sherlock,self_serve,missing,free_self_serve,wrong entity
-sherlock,api_style,missing,cli,wrong entity
-sherlock,api_breadth,missing,small,wrong entity
-sherlock,existing_mcp,missing,community,wrong entity
-sherlock,sandbox_available,missing,false,wrong entity
-sherlock,openapi_spec_available,missing,false,wrong entity
-sherlock,webhooks,missing,false,wrong entity
-sherlock,verdict,missing,skill_or_cli_only,wrong entity
-sherlock,main_blocker,missing,Local CLI tool without hosted API,wrong entity
-sherlock,difficulty_1_to_5,missing,3,wrong entity
-amazon-selling-partner,auth_methods,missing,"[""other""]",stale docs
-amazon-selling-partner,self_serve,missing,approval_required,ambiguous plan tiers
-amazon-selling-partner,api_style,missing,rest,stale docs
-amazon-selling-partner,api_breadth,missing,large,JS-rendered page
-amazon-selling-partner,existing_mcp,missing,community,JS-rendered page
-amazon-selling-partner,sandbox_available,missing,true,ambiguous plan tiers
-amazon-selling-partner,openapi_spec_available,missing,true,JS-rendered page
-amazon-selling-partner,webhooks,missing,true,JS-rendered page
-amazon-selling-partner,verdict,missing,ship_with_setup_friction,ambiguous plan tiers
-amazon-selling-partner,main_blocker,missing,AWS Signature V4 dual auth and Amazon Developer Profile vetting,ambiguous plan tiers
-amazon-selling-partner,difficulty_1_to_5,missing,5,ambiguous plan tiers
+notion,self_serve,unknown,free_self_serve,
+notion,api_breadth,unknown,medium,
+notion,sandbox_available,None,false,
+notion,openapi_spec_available,None,true,
+notion,webhooks,True,false,
+notion,verdict,unknown,ship_now,
+notion,main_blocker,unknown,none,
+notion,difficulty_1_to_5,4,2,
+hubspot,auth_methods,['unknown'],"[""oauth2"", ""bearer_token""]",
+hubspot,self_serve,unknown,free_self_serve,
+hubspot,api_style,unknown,rest,
+hubspot,api_breadth,unknown,large,
+hubspot,sandbox_available,None,true,
+hubspot,openapi_spec_available,None,true,
+hubspot,verdict,unknown,ship_now,
+hubspot,main_blocker,unknown,none,
+hubspot,difficulty_1_to_5,4,2,
+twilio,auth_methods,['unknown'],"[""basic"", ""api_key""]",
+twilio,api_style,unknown,rest,
+twilio,api_breadth,unknown,large,
+twilio,sandbox_available,None,true,
+twilio,openapi_spec_available,None,true,
+twilio,verdict,unknown,ship_now,
+twilio,main_blocker,unknown,none,
+twilio,difficulty_1_to_5,4,2,
+github,auth_methods,['unknown'],"[""oauth2"", ""bearer_token""]",
+github,api_breadth,unknown,large,
+github,sandbox_available,None,false,
+github,webhooks,None,true,
+github,verdict,unknown,ship_now,
+github,main_blocker,unknown,none,
+github,difficulty_1_to_5,2,1,
+google-drive,self_serve,unknown,free_self_serve,
+google-drive,api_breadth,unknown,large,
+google-drive,sandbox_available,None,false,
+google-drive,openapi_spec_available,None,true,
+google-drive,webhooks,None,true,
+google-drive,verdict,unknown,ship_with_setup_friction,
+google-drive,main_blocker,unknown,Google OAuth consent screen verification for restricted scopes,
+google-drive,difficulty_1_to_5,4,3,
+stripe,self_serve,unknown,free_self_serve,
+stripe,api_style,unknown,rest,
+stripe,api_breadth,unknown,large,
+stripe,openapi_spec_available,None,true,
+stripe,webhooks,None,true,
+stripe,verdict,unknown,ship_now,
+stripe,main_blocker,unknown,none,
+stripe,difficulty_1_to_5,4,1,
+webflow,auth_methods,['unknown'],"[""oauth2"", ""bearer_token""]",
+webflow,self_serve,unknown,free_self_serve,
+webflow,api_breadth,unknown,medium,
+webflow,sandbox_available,None,false,
+webflow,openapi_spec_available,None,true,
+webflow,verdict,unknown,ship_now,
+webflow,main_blocker,unknown,none,
+webflow,difficulty_1_to_5,4,2,
+greenhouse,self_serve,free_self_serve,paid_required,
+greenhouse,api_style,unknown,rest,
+greenhouse,api_breadth,unknown,medium,
+greenhouse,sandbox_available,None,true,
+greenhouse,openapi_spec_available,None,false,
+greenhouse,verdict,unknown,ship_with_setup_friction,
+greenhouse,main_blocker,unknown,Requires paid enterprise Greenhouse subscription,
+greenhouse,difficulty_1_to_5,4,3,
+posthog,api_style,unknown,rest,
+posthog,api_breadth,unknown,large,
+posthog,sandbox_available,None,false,
+posthog,openapi_spec_available,None,true,
+posthog,webhooks,None,true,
+posthog,verdict,unknown,ship_now,
+posthog,main_blocker,unknown,none,
+posthog,difficulty_1_to_5,4,1,
+shopify,auth_methods,['api_key'],"[""oauth2"", ""bearer_token""]",
+shopify,api_style,graphql,rest,
+shopify,api_breadth,unknown,large,
+shopify,sandbox_available,None,true,
+shopify,openapi_spec_available,None,false,
+shopify,webhooks,None,true,
+shopify,verdict,unknown,ship_now,
+shopify,main_blocker,unknown,none,
+linear,self_serve,unknown,free_self_serve,
+linear,api_breadth,unknown,large,
+linear,sandbox_available,None,false,
+linear,openapi_spec_available,None,false,
+linear,webhooks,None,true,
+linear,verdict,unknown,ship_now,
+linear,main_blocker,unknown,none,
+linear,difficulty_1_to_5,4,2,
+attio,auth_methods,['unknown'],"[""oauth2"", ""bearer_token""]",
+attio,self_serve,unknown,free_self_serve,
+attio,api_breadth,unknown,medium,
+attio,sandbox_available,None,false,
+attio,openapi_spec_available,None,true,
+attio,verdict,unknown,ship_now,
+attio,main_blocker,unknown,none,
+attio,difficulty_1_to_5,4,2,
+whatsapp-business,auth_methods,missing,"[""bearer_token"", ""oauth2""]",
+whatsapp-business,self_serve,missing,approval_required,
+whatsapp-business,api_style,missing,rest,
+whatsapp-business,api_breadth,missing,medium,
+whatsapp-business,existing_mcp,missing,community,
+whatsapp-business,sandbox_available,missing,true,
+whatsapp-business,openapi_spec_available,missing,false,
+whatsapp-business,webhooks,missing,true,
+whatsapp-business,verdict,missing,ship_with_setup_friction,
+whatsapp-business,main_blocker,missing,Meta Business Verification and message template pre-approval,
+whatsapp-business,difficulty_1_to_5,missing,4,
+sentry,auth_methods,['unknown'],"[""bearer_token""]",
+sentry,self_serve,trial_self_serve,free_self_serve,
+sentry,api_style,unknown,rest,
+sentry,api_breadth,unknown,large,
+sentry,sandbox_available,None,false,
+sentry,openapi_spec_available,None,true,
+sentry,webhooks,None,true,
+sentry,verdict,unknown,ship_now,
+sentry,main_blocker,unknown,none,
+sentry,difficulty_1_to_5,4,2,
+notebooklm,auth_methods,missing,"[""none""]",
+notebooklm,self_serve,missing,unknown,
+notebooklm,api_style,missing,none,
+notebooklm,api_breadth,missing,none,
+notebooklm,existing_mcp,missing,community,
+notebooklm,sandbox_available,missing,false,
+notebooklm,openapi_spec_available,missing,false,
+notebooklm,webhooks,missing,false,
+notebooklm,verdict,missing,blocked,
+notebooklm,main_blocker,missing,No official public API published by Google,
+notebooklm,difficulty_1_to_5,missing,5,
+brex,self_serve,unknown,paid_required,
+brex,api_style,unknown,rest,
+brex,api_breadth,unknown,medium,
+brex,existing_mcp,community,none,
+brex,sandbox_available,None,true,
+brex,openapi_spec_available,None,true,
+brex,webhooks,None,true,
+brex,verdict,unknown,ship_with_setup_friction,
+brex,main_blocker,unknown,Requires approved corporate Brex account,
+brex,difficulty_1_to_5,4,3,
+typeform,auth_methods,['unknown'],"[""oauth2"", ""bearer_token""]",
+typeform,api_style,unknown,rest,
+typeform,api_breadth,unknown,medium,
+typeform,sandbox_available,None,false,
+typeform,openapi_spec_available,None,true,
+typeform,verdict,unknown,ship_now,
+typeform,main_blocker,unknown,none,
+typeform,difficulty_1_to_5,4,2,
+workday,auth_methods,['unknown'],"[""oauth2"", ""basic""]",
+workday,self_serve,unknown,partnership_or_sales_gated,
+workday,api_style,unknown,soap,
+workday,api_breadth,unknown,large,
+workday,sandbox_available,None,true,
+workday,openapi_spec_available,None,false,
+workday,webhooks,None,false,
+workday,verdict,unknown,needs_outreach,
+workday,main_blocker,unknown,Requires Workday customer tenant and enterprise partner certification,
+workday,difficulty_1_to_5,4,5,
+sherlock,auth_methods,missing,"[""none""]",
+sherlock,self_serve,missing,free_self_serve,
+sherlock,api_style,missing,cli,
+sherlock,api_breadth,missing,small,
+sherlock,existing_mcp,missing,community,
+sherlock,sandbox_available,missing,false,
+sherlock,openapi_spec_available,missing,false,
+sherlock,webhooks,missing,false,
+sherlock,verdict,missing,skill_or_cli_only,
+sherlock,main_blocker,missing,Local CLI tool without hosted API,
+sherlock,difficulty_1_to_5,missing,3,
+amazon-selling-partner,auth_methods,missing,"[""other""]",
+amazon-selling-partner,self_serve,missing,approval_required,
+amazon-selling-partner,api_style,missing,rest,
+amazon-selling-partner,api_breadth,missing,large,
+amazon-selling-partner,existing_mcp,missing,community,
+amazon-selling-partner,sandbox_available,missing,true,
+amazon-selling-partner,openapi_spec_available,missing,true,
+amazon-selling-partner,webhooks,missing,true,
+amazon-selling-partner,verdict,missing,ship_with_setup_friction,
+amazon-selling-partner,main_blocker,missing,AWS Signature V4 dual auth and Amazon Developer Profile vetting,
+amazon-selling-partner,difficulty_1_to_5,missing,5,
