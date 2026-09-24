@@ -3,35 +3,57 @@ name: Composio App Research Pipeline
 on:
   workflow_dispatch:
     inputs:
+      app:
+        description: 'Application name or ID to research (e.g. Notion, Slack, or all)'
+        required: true
+        default: 'Notion'
+      mode:
+        description: 'Pipeline execution mode'
+        required: true
+        default: 'v2'
+        type: choice
+        options:
+          - v2
+          - v1
       concurrency:
         description: 'Concurrency limit'
         required: false
         default: '10'
-      resume:
-        description: 'Resume previous run'
-        type: boolean
-        default: false
 
 jobs:
   research:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Install uv
         uses: astral-sh/setup-uv@v2
+        with:
+          version: "latest"
+
       - name: Set up Python
-        run: uv python install 3.11
+        run: uv python install 3.12
+
       - name: Install dependencies
         run: uv sync --frozen
-      - name: Run research pipeline
+
+      - name: Run research agent
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           VERIFIER_API_KEY: ${{ secrets.VERIFIER_API_KEY }}
           COMPOSIO_API_KEY: ${{ secrets.COMPOSIO_API_KEY }}
         run: |
-          python -m src.research.cli run --concurrency ${{ github.event.inputs.concurrency }}
-      - name: Upload results artifact
+          if [ "${{ github.event.inputs.app }}" = "all" ]; then
+            python -m research run --all --mode ${{ github.event.inputs.mode }} --concurrency ${{ github.event.inputs.concurrency }} --output data/action_results.jsonl
+          else
+            python -m research run --app "${{ github.event.inputs.app }}" --mode ${{ github.event.inputs.mode }} --output data/action_results.jsonl
+          fi
+
+      - name: Upload research results artifact
         uses: actions/upload-artifact@v4
         with:
-          name: research-results
-          path: data/
+          name: research-${{ github.event.inputs.app }}-${{ github.event.inputs.mode }}
+          path: |
+            data/action_results.jsonl
+            data/review_queue.csv

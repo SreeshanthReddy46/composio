@@ -1,6 +1,9 @@
+.env
+.env.*
 .venv/
 __pycache__/
 *.pyc
 data/cache/
 *.log
 .pytest_cache/
+dist/*.tmp
