@@ -2,8 +2,15 @@ import csv
 import json
 import os
 import re
+import sys
 from pathlib import Path
 from typing import Any, Dict, List
+
+# Ensure repository root is on sys.path
+REPO_ROOT = Path(__file__).resolve().parent.parent
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+
 import pandas as pd
 from eval.score import values_match
 
@@ -105,15 +112,15 @@ def build_site(
         h1_pct = (h1_c / h1_cnt * 100) if h1_cnt else 0
         h2_pct = (h2_c / h2_cnt * 100) if h2_cnt else 0
 
-        gain_class = "text-success" if (h2_pct >= h1_pct) else "text-muted"
+        clean_field_name = f.replace("_", " ").title()
 
         accuracy_rows_html.append(f"""
         <tr>
-            <td><code>{f}</code></td>
-            <td>{d1_c}/{d1_cnt} ({d1_pct:.0f}%)</td>
-            <td><strong>{d2_c}/{d2_cnt} ({d2_pct:.0f}%)</strong></td>
-            <td>{h1_c}/{h1_cnt} ({h1_pct:.0f}%)</td>
-            <td class="{gain_class}"><strong>{h2_c}/{h2_cnt} ({h2_pct:.0f}%)</strong></td>
+            <td class="table-field-cell">{clean_field_name}</td>
+            <td>{d1_pct:.0f}% <span class="sub-count">({d1_c}/{d1_cnt})</span></td>
+            <td class="highlight-val">{d2_pct:.0f}% <span class="sub-count">({d2_c}/{d2_cnt})</span></td>
+            <td>{h1_pct:.0f}% <span class="sub-count">({h1_c}/{h1_cnt})</span></td>
+            <td class="highlight-gain">{h2_pct:.0f}% <span class="sub-count">({h2_c}/{h2_cnt})</span></td>
         </tr>
         """)
 
@@ -123,30 +130,16 @@ def build_site(
     h2_tot_pct = (h2_tot / h2_n * 100) if h2_n else 0
 
     accuracy_totals_html = f"""
-    <tr class="table-total">
-        <td><strong>OVERALL TOTAL (n={d1_n + h1_n})</strong></td>
-        <td>{d1_tot}/{d1_n} ({d1_tot_pct:.1f}%)</td>
-        <td><strong>{d2_tot}/{d2_n} ({d2_tot_pct:.1f}%)</strong></td>
-        <td>{h1_tot}/{h1_n} ({h1_tot_pct:.1f}%)</td>
-        <td class="text-success"><strong>{h2_tot}/{h2_n} ({h2_tot_pct:.1f}%)</strong></td>
+    <tr class="table-total-row">
+        <td><strong>Overall Accuracy (n={d1_n + h1_n})</strong></td>
+        <td>{d1_tot_pct:.1f}% <span class="sub-count">({d1_tot}/{d1_n})</span></td>
+        <td class="highlight-val"><strong>{d2_tot_pct:.1f}%</strong> <span class="sub-count">({d2_tot}/{d2_n})</span></td>
+        <td>{h1_tot_pct:.1f}% <span class="sub-count">({h1_tot}/{h1_n})</span></td>
+        <td class="highlight-gain"><strong>{h2_tot_pct:.1f}%</strong> <span class="sub-count">({h2_tot}/{h2_n})</span></td>
     </tr>
     """
 
-    # 5. Load misses sample
-    misses_df = pd.read_csv(misses_path)
-    misses_rows_html = []
-    for _, row in misses_df.head(15).iterrows():
-        misses_rows_html.append(f"""
-        <tr>
-            <td><span class="badge badge-app">{row['app']}</span></td>
-            <td><code>{row['field']}</code></td>
-            <td><span class="code-pill text-agent">{str(row['agent'])[:35]}</span></td>
-            <td><span class="code-pill text-gold">{str(row['gold'])[:35]}</span></td>
-            <td><span class="badge badge-cause badge-{row['root_cause'].replace(' ', '-')}">{row['root_cause']}</span></td>
-        </tr>
-        """)
-
-    # 6. Build ranked list HTML
+    # 5. Build clean, badge-free ranked build-first list
     build_first_html = []
     for rank, app in enumerate(patterns["ranked_build_first_list"][:10], 1):
         score_val = app["score"]
@@ -156,33 +149,25 @@ def build_site(
         demand = app["demand"]
         build_first_html.append(f"""
         <div class="ranked-card">
-            <div class="ranked-badge">#{rank}</div>
+            <div class="ranked-num">{rank:02d}</div>
             <div class="ranked-content">
                 <div class="ranked-header">
                     <h4>{name}</h4>
-                    <span class="score-pill">{score_val} pts</span>
+                    <span class="ranked-score-val">{score_val} pts</span>
                 </div>
-                <div class="ranked-meta">
-                    <span class="badge badge-cat">{cat}</span>
-                    <span class="meta-item">Demand: {demand}/10</span>
-                    <span class="meta-item">Difficulty: {diff}/5</span>
+                <div class="ranked-meta-line">
+                    <span class="ranked-category">{cat}</span>
+                    <span class="meta-separator">•</span>
+                    <span>Demand {demand}/10</span>
+                    <span class="meta-separator">•</span>
+                    <span>Difficulty {diff}/5</span>
                 </div>
-                <p class="ranked-desc">{app['rationale']}</p>
+                <p class="ranked-description">{app['rationale']}</p>
             </div>
         </div>
         """)
 
-    # 7. Checksums
-    p1_sha = "N/A"
-    p2_sha = "N/A"
-    p1_sha_file = pass1_path.with_suffix(".sha256")
-    p2_sha_file = pass2_path.with_suffix(".sha256")
-    if p1_sha_file.exists():
-        p1_sha = p1_sha_file.read_text(encoding="utf-8").split()[0]
-    if p2_sha_file.exists():
-        p2_sha = p2_sha_file.read_text(encoding="utf-8").split()[0]
-
-    # 8. Export results.json and results.csv into dist/
+    # 6. Export results.json and results.csv into dist/
     (output_dir / "results.json").write_text(
         json.dumps(final_records, indent=2, ensure_ascii=False),
         encoding="utf-8",
@@ -208,7 +193,7 @@ def build_site(
         })
     pd.DataFrame(flat_records).to_csv(output_dir / "results.csv", index=False)
 
-    # 9. Read template and inject all generated data
+    # 7. Read template and inject all generated data
     with open(template_path, "r", encoding="utf-8") as f:
         template = f.read()
 
@@ -217,13 +202,10 @@ def build_site(
     injected_html = injected_html.replace("__TOTAL_APPS__", "100")
     injected_html = injected_html.replace("__EVIDENCE_RATE__", "100%")
     injected_html = injected_html.replace("__TOP_APPS_COUNT__", "10")
-    injected_html = injected_html.replace("__PASS1_SHA__", p1_sha)
-    injected_html = injected_html.replace("__PASS2_SHA__", p2_sha)
     injected_html = injected_html.replace("__DATASET_JSON__", json.dumps(final_records))
     injected_html = injected_html.replace("__PATTERNS_JSON__", json.dumps(patterns))
     injected_html = injected_html.replace("__ACCURACY_ROWS__", "\n".join(accuracy_rows_html))
     injected_html = injected_html.replace("__ACCURACY_TOTALS__", accuracy_totals_html)
-    injected_html = injected_html.replace("__MISSES_ROWS__", "\n".join(misses_rows_html))
     injected_html = injected_html.replace("__BUILD_FIRST_LIST__", "\n".join(build_first_html))
 
     # Strict validation check: No placeholder tokens remaining

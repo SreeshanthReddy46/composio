@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Composio 100-App Toolkit-Buildability Research Case Study</title>
-  <meta name="description" content="Rigorous automated research agent investigating API buildability, auth mechanisms, and SDK coverage for 100 SaaS applications for Composio toolkit integration." />
+  <title>Composio • 100-App Toolkit Buildability Case Study</title>
+  <meta name="description" content="Automated, evidence-backed research on API buildability, auth mechanisms, and SDK coverage across 100 SaaS applications for Composio toolkit integration." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -13,625 +13,812 @@
       --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
       
-      --bg-primary: #0a0d14;
-      --bg-secondary: #121722;
-      --bg-card: rgba(22, 29, 44, 0.7);
-      --bg-card-hover: rgba(30, 41, 62, 0.85);
-      --border-color: rgba(255, 255, 255, 0.08);
-      --border-accent: rgba(59, 130, 246, 0.3);
+      --bg-base: #080b12;
+      --bg-surface: #0f1422;
+      --bg-card: rgba(18, 24, 38, 0.65);
+      --bg-card-hover: rgba(26, 35, 56, 0.85);
+      --bg-input: #141b2c;
       
-      --text-main: #f1f5f9;
-      --text-muted: #94a3b8;
-      --text-dim: #64748b;
+      --border-subtle: rgba(255, 255, 255, 0.07);
+      --border-hover: rgba(56, 189, 248, 0.3);
+      --border-active: #38bdf8;
       
-      --accent: #3b82f6;
-      --accent-gradient: linear-gradient(135deg, #38bdf8 0%, #3b82f6 50%, #8b5cf6 100%);
-      --success: #10b981;
-      --warning: #f59e0b;
-      --danger: #ef4444;
-      --purple: #a855f7;
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --text-tertiary: #64748b;
       
-      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
-      --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.45);
-      --radius-sm: 8px;
-      --radius-md: 12px;
-      --radius-lg: 18px;
+      --accent-blue: #38bdf8;
+      --accent-indigo: #6366f1;
+      --accent-purple: #a855f7;
+      --accent-gradient: linear-gradient(135deg, #38bdf8 0%, #6366f1 50%, #a855f7 100%);
+      
+      --status-ship: #10b981;
+      --status-friction: #f59e0b;
+      --status-outreach: #a855f7;
+      --status-blocked: #ef4444;
+      --status-cli: #0284c7;
+      
+      --shadow-card: 0 4px 20px -2px rgba(0, 0, 0, 0.35);
+      --shadow-glow: 0 0 35px -5px rgba(56, 189, 248, 0.15);
+      --shadow-elevated: 0 16px 36px -4px rgba(0, 0, 0, 0.5);
+      
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+      --radius-full: 9999px;
     }
 
     @media (prefers-color-scheme: light) {
       :root {
-        --bg-primary: #f8fafc;
-        --bg-secondary: #edf2f7;
+        --bg-base: #f8fafc;
+        --bg-surface: #ffffff;
         --bg-card: rgba(255, 255, 255, 0.85);
-        --bg-card-hover: rgba(255, 255, 255, 0.98);
-        --border-color: rgba(0, 0, 0, 0.08);
-        --border-accent: rgba(59, 130, 246, 0.4);
+        --bg-card-hover: #ffffff;
+        --bg-input: #f1f5f9;
         
-        --text-main: #0f172a;
-        --text-muted: #475569;
-        --text-dim: #94a3b8;
+        --border-subtle: rgba(0, 0, 0, 0.08);
+        --border-hover: rgba(2, 132, 199, 0.3);
+        --border-active: #0284c7;
         
-        --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
-        --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.08);
+        --text-primary: #0f172a;
+        --text-secondary: #475569;
+        --text-tertiary: #94a3b8;
+        
+        --accent-gradient: linear-gradient(135deg, #0284c7 0%, #4f46e5 100%);
+        --shadow-card: 0 4px 16px -2px rgba(0, 0, 0, 0.06);
+        --shadow-glow: 0 0 25px -5px rgba(2, 132, 199, 0.1);
+        --shadow-elevated: 0 16px 32px -4px rgba(0, 0, 0, 0.1);
       }
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    
     body {
       font-family: var(--font-main);
-      background-color: var(--bg-primary);
-      color: var(--text-main);
+      background-color: var(--bg-base);
+      color: var(--text-primary);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
-      padding-bottom: 5rem;
+      overflow-x: hidden;
+      position: relative;
     }
 
-    a { color: var(--accent); text-decoration: none; transition: all 0.2s ease; }
-    a:hover { text-decoration: underline; }
+    /* Ambient Background Glow Animation */
+    .ambient-glow {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100vw;
+      max-width: 1400px;
+      height: 650px;
+      background: radial-gradient(ellipse 65% 55% at 50% -10%, rgba(56, 189, 248, 0.15), transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+      animation: ambientPulse 8s ease-in-out infinite alternate;
+    }
+
+    @keyframes ambientPulse {
+      0% { opacity: 0.7; transform: translateX(-50%) scale(0.98); }
+      100% { opacity: 1; transform: translateX(-50%) scale(1.02); }
+    }
 
     .container {
-      max-width: 1280px;
+      max-width: 1240px;
       margin: 0 auto;
       padding: 0 1.5rem;
+      position: relative;
+      z-index: 1;
     }
 
-    /* Executive Text Summary */
-    .exec-summary-bar {
-      background: var(--bg-secondary);
-      border-bottom: 1px solid var(--border-color);
-      padding: 0.75rem 0;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-    }
-    .exec-summary-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-    .download-links {
-      display: flex;
-      gap: 0.75rem;
-    }
-    .btn-download {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      padding: 0.25rem 0.6rem;
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-sm);
-      color: var(--text-main);
-    }
-    .btn-download:hover {
-      background: var(--border-color);
-      text-decoration: none;
-    }
-
-    /* Section 1: Headline Strip */
-    header.headline-strip {
-      padding: 4.5rem 0 3rem;
+    /* Clean Hero Section */
+    header.hero-section {
+      padding: 5rem 0 3.5rem;
       text-align: center;
+      animation: heroFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
-    .badge-pill {
-      display: inline-block;
-      padding: 0.35rem 0.9rem;
-      background: rgba(59, 130, 246, 0.15);
-      color: #38bdf8;
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      border-radius: 9999px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
+
+    @keyframes heroFadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--accent-blue);
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      margin-bottom: 1.25rem;
+      margin-bottom: 1rem;
+      display: inline-block;
     }
+
     h1.hero-title {
-      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-size: clamp(2.4rem, 5.5vw, 4.2rem);
       font-weight: 800;
-      line-height: 1.15;
-      letter-spacing: -0.03em;
+      line-height: 1.12;
+      letter-spacing: -0.035em;
       margin-bottom: 1.25rem;
       background: var(--accent-gradient);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
+
     p.hero-thesis {
-      font-size: clamp(1.05rem, 2vw, 1.25rem);
-      color: var(--text-muted);
-      max-width: 860px;
+      font-size: clamp(1.05rem, 2vw, 1.2rem);
+      color: var(--text-secondary);
+      max-width: 780px;
       margin: 0 auto 3rem;
+      font-weight: 400;
+      line-height: 1.65;
     }
 
+    /* Key Metrics Grid */
     .metrics-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1.5rem;
-      margin-bottom: 3.5rem;
+      margin-bottom: 2rem;
     }
+
     .metric-card {
       background: var(--bg-card);
-      backdrop-filter: blur(12px);
-      border: 1px solid var(--border-color);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border-subtle);
       border-radius: var(--radius-lg);
-      padding: 2rem;
+      padding: 2.25rem 2rem;
       text-align: center;
-      transition: transform 0.2s ease, border-color 0.2s ease;
-      box-shadow: var(--shadow-sm);
+      box-shadow: var(--shadow-card);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
     }
+
+    .metric-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--accent-gradient);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
     .metric-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--border-accent);
-      box-shadow: var(--shadow-lg);
+      transform: translateY(-5px);
+      border-color: var(--border-hover);
+      box-shadow: var(--shadow-glow), var(--shadow-card);
     }
+
+    .metric-card:hover::before {
+      opacity: 1;
+    }
+
     .metric-value {
-      font-size: 3.5rem;
+      font-size: 3.6rem;
       font-weight: 800;
       letter-spacing: -0.04em;
       line-height: 1;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.6rem;
       background: var(--accent-gradient);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
+
     .metric-label {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       font-weight: 600;
-      color: var(--text-main);
-      margin-bottom: 0.25rem;
-    }
-    .metric-sub {
-      font-size: 0.85rem;
-      color: var(--text-dim);
+      color: var(--text-primary);
+      margin-bottom: 0.35rem;
     }
 
-    /* Section Headers */
+    .metric-sub {
+      font-size: 0.85rem;
+      color: var(--text-tertiary);
+    }
+
+    /* Section Headings */
     .section-head {
       margin-bottom: 2rem;
     }
+
     .section-tag {
       font-family: var(--font-mono);
-      font-size: 0.8rem;
-      color: #38bdf8;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--accent-blue);
       text-transform: uppercase;
       letter-spacing: 0.08em;
       display: block;
-      margin-bottom: 0.25rem;
-    }
-    .section-title {
-      font-size: 2rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
+      margin-bottom: 0.4rem;
     }
 
-    /* Section 2: Patterns & Findings */
-    section.patterns-section {
-      padding: 3.5rem 0;
-      border-top: 1px solid var(--border-color);
+    .section-title {
+      font-size: 1.95rem;
+      font-weight: 700;
+      letter-spacing: -0.025em;
     }
+
+    /* Section 2: Strategic Findings */
+    section.patterns-section {
+      padding: 4rem 0;
+      border-top: 1px solid var(--border-subtle);
+    }
+
     .findings-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 1.5rem;
       margin-bottom: 3.5rem;
     }
+
     .finding-card {
       background: var(--bg-card);
-      border: 1px solid var(--border-color);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
-      padding: 1.75rem;
+      padding: 1.85rem;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
       display: flex;
       flex-direction: column;
       gap: 0.75rem;
     }
+
+    .finding-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-hover);
+      background: var(--bg-card-hover);
+    }
+
     .finding-stat {
       font-size: 2.2rem;
       font-weight: 800;
-      color: #38bdf8;
-    }
-    .finding-card h3 {
-      font-size: 1.15rem;
-      color: var(--text-main);
-    }
-    .finding-card p {
-      color: var(--text-muted);
-      font-size: 0.9rem;
+      letter-spacing: -0.03em;
+      color: var(--accent-blue);
+      line-height: 1;
     }
 
+    .finding-card h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .finding-card p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Priority Build List */
     .ranked-container {
       background: var(--bg-card);
-      border: 1px solid var(--border-color);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border-subtle);
       border-radius: var(--radius-lg);
-      padding: 2rem;
+      padding: 2.25rem;
+      box-shadow: var(--shadow-card);
     }
+
     .ranked-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
       gap: 1.25rem;
       margin-top: 1.5rem;
     }
+
     .ranked-card {
-      background: var(--bg-secondary);
-      border: 1px solid var(--border-color);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
-      padding: 1.25rem;
+      padding: 1.35rem;
       display: flex;
-      gap: 1rem;
+      gap: 1.2rem;
       align-items: flex-start;
+      transition: all 0.25s ease;
     }
-    .ranked-badge {
+
+    .ranked-card:hover {
+      border-color: var(--border-hover);
+      transform: translateX(3px);
+    }
+
+    .ranked-num {
       font-family: var(--font-mono);
-      font-size: 1.2rem;
-      font-weight: 800;
-      color: #38bdf8;
-      padding: 0.25rem 0.5rem;
-      background: rgba(56, 189, 248, 0.1);
-      border-radius: var(--radius-sm);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--accent-blue);
+      opacity: 0.85;
+      padding-top: 0.1rem;
     }
+
     .ranked-content { flex: 1; }
+
     .ranked-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.35rem;
     }
-    .ranked-header h4 { font-size: 1.05rem; }
-    .score-pill {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      padding: 0.15rem 0.5rem;
-      background: rgba(16, 185, 129, 0.15);
-      color: var(--success);
-      border-radius: var(--radius-sm);
+
+    .ranked-header h4 {
+      font-size: 1.05rem;
       font-weight: 600;
+      color: var(--text-primary);
     }
-    .ranked-meta {
+
+    .ranked-score-val {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--status-ship);
+    }
+
+    .ranked-meta-line {
       display: flex;
-      gap: 0.5rem;
+      gap: 0.45rem;
       align-items: center;
       margin-bottom: 0.5rem;
-      font-size: 0.75rem;
-      color: var(--text-dim);
+      font-size: 0.78rem;
+      color: var(--text-tertiary);
     }
-    .badge-cat {
-      background: var(--bg-card);
-      padding: 0.1rem 0.4rem;
-      border-radius: 4px;
-      color: var(--text-muted);
-    }
-    .ranked-desc { font-size: 0.85rem; color: var(--text-muted); }
 
-    /* Section 3: Filterable Matrix */
+    .ranked-category {
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .meta-separator {
+      opacity: 0.4;
+    }
+
+    .ranked-description {
+      font-size: 0.86rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* Section 3: Interactive Matrix */
     section.matrix-section {
-      padding: 3.5rem 0;
-      border-top: 1px solid var(--border-color);
+      padding: 4rem 0;
+      border-top: 1px solid var(--border-subtle);
     }
-    .matrix-controls {
+
+    .matrix-toolbar {
       display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-bottom: 1.5rem;
-      align-items: center;
+      flex-direction: column;
+      gap: 1.25rem;
+      margin-bottom: 1.75rem;
     }
+
+    .search-bar-wrapper {
+      position: relative;
+      width: 100%;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-tertiary);
+      pointer-events: none;
+      transition: color 0.2s ease;
+    }
+
     .search-input {
-      flex: 1;
-      min-width: 260px;
-      padding: 0.75rem 1rem;
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
+      width: 100%;
+      padding: 0.85rem 1rem 0.85rem 2.75rem;
+      background: var(--bg-input);
+      border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
-      color: var(--text-main);
+      color: var(--text-primary);
       font-size: 0.95rem;
       font-family: var(--font-main);
+      transition: all 0.25s ease;
     }
+
     .search-input:focus {
       outline: none;
-      border-color: var(--accent);
-    }
-    .filter-chips {
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-    }
-    .chip {
-      padding: 0.4rem 0.8rem;
-      font-size: 0.8rem;
-      font-weight: 500;
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: 9999px;
-      color: var(--text-muted);
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-    .chip.active, .chip:hover {
-      background: rgba(59, 130, 246, 0.2);
-      color: #38bdf8;
-      border-color: rgba(56, 189, 248, 0.4);
+      border-color: var(--border-active);
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
     }
 
-    .table-wrapper {
+    .search-input:focus + .search-icon {
+      color: var(--accent-blue);
+    }
+
+    /* Clean Category Tab Bar */
+    .category-tabs {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      padding-bottom: 0.25rem;
+      scrollbar-width: none;
+    }
+
+    .category-tabs::-webkit-scrollbar { display: none; }
+
+    .tab-btn {
+      padding: 0.5rem 1rem;
+      font-size: 0.82rem;
+      font-weight: 500;
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: var(--radius-sm);
+      color: var(--text-secondary);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+      font-family: var(--font-main);
+    }
+
+    .tab-btn:hover {
+      color: var(--text-primary);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .tab-btn.active {
+      color: var(--accent-blue);
+      background: rgba(56, 189, 248, 0.1);
+      border-color: rgba(56, 189, 248, 0.2);
+    }
+
+    /* Table Container */
+    .table-container {
       overflow-x: auto;
       background: var(--bg-card);
-      border: 1px solid var(--border-color);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-subtle);
       border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-sm);
+      box-shadow: var(--shadow-card);
     }
-    table.data-table {
+
+    table.modern-table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 0.85rem;
+      font-size: 0.86rem;
       text-align: left;
     }
-    table.data-table th, table.data-table td {
-      padding: 0.9rem 1rem;
-      border-bottom: 1px solid var(--border-color);
-      vertical-align: middle;
-    }
-    table.data-table th {
-      background: var(--bg-secondary);
+
+    table.modern-table th {
+      padding: 1rem 1.15rem;
+      background: var(--bg-surface);
       font-weight: 600;
-      color: var(--text-muted);
-      cursor: pointer;
+      color: var(--text-tertiary);
+      border-bottom: 1px solid var(--border-subtle);
+      white-space: nowrap;
       user-select: none;
+    }
+
+    table.modern-table td {
+      padding: 1rem 1.15rem;
+      border-bottom: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      vertical-align: middle;
+      transition: background-color 0.2s ease;
+    }
+
+    table.modern-table tbody tr {
+      transition: background-color 0.15s ease;
+    }
+
+    table.modern-table tbody tr:hover td {
+      background-color: var(--bg-card-hover);
+      color: var(--text-primary);
+    }
+
+    .app-cell-name {
+      font-weight: 600;
+      color: var(--text-primary);
       white-space: nowrap;
     }
-    table.data-table th:hover {
-      color: var(--text-main);
+
+    .cell-category {
+      font-size: 0.8rem;
+      color: var(--text-tertiary);
+      white-space: nowrap;
     }
-    table.data-table tr:hover td {
-      background: var(--bg-card-hover);
+
+    .cell-mono {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--text-secondary);
     }
-    .app-title-cell {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-weight: 600;
-    }
-    .evidence-badge {
+
+    /* Status Indicator with Dot (No Bulky Badges) */
+    .status-row {
       display: inline-flex;
       align-items: center;
-      padding: 0.2rem 0.5rem;
-      border-radius: var(--radius-sm);
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      cursor: pointer;
-      text-decoration: none;
-      transition: all 0.15s ease;
-    }
-    .badge-quote {
-      background: rgba(56, 189, 248, 0.12);
-      color: #38bdf8;
-      border: 1px solid rgba(56, 189, 248, 0.25);
-    }
-    .badge-quote:hover {
-      background: rgba(56, 189, 248, 0.25);
-    }
-    .badge-unknown {
-      background: rgba(148, 163, 184, 0.1);
-      color: var(--text-dim);
-      border: 1px solid rgba(148, 163, 184, 0.15);
+      gap: 0.5rem;
+      white-space: nowrap;
+      font-size: 0.82rem;
+      font-weight: 500;
     }
 
-    /* Status Badges */
-    .status-badge {
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
       display: inline-block;
-      padding: 0.2rem 0.5rem;
-      border-radius: 4px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      text-transform: capitalize;
-    }
-    .badge-ship-now { background: rgba(16, 185, 129, 0.2); color: var(--success); }
-    .badge-ship-with-setup-friction { background: rgba(245, 158, 11, 0.2); color: var(--warning); }
-    .badge-needs-outreach { background: rgba(168, 85, 247, 0.2); color: var(--purple); }
-    .badge-blocked { background: rgba(239, 68, 68, 0.2); color: var(--danger); }
-    .badge-skill-or-cli-only { background: rgba(56, 189, 248, 0.2); color: #38bdf8; }
-
-    /* Section 4: Agent Pipeline SVG */
-    section.pipeline-section {
-      padding: 3.5rem 0;
-      border-top: 1px solid var(--border-color);
-    }
-    .svg-container {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-lg);
-      padding: 2rem;
-      overflow-x: auto;
+      flex-shrink: 0;
     }
 
-    /* Section 5: Verification & Failure */
-    section.verification-section {
-      padding: 3.5rem 0;
-      border-top: 1px solid var(--border-color);
+    .status-ship-now .status-dot {
+      background: var(--status-ship);
+      box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+      animation: pulseDot 2.5s infinite;
     }
-    .fail-narrative-card {
-      background: rgba(239, 68, 68, 0.05);
-      border: 1px solid rgba(239, 68, 68, 0.2);
-      border-radius: var(--radius-lg);
-      padding: 2rem;
-      margin-top: 2rem;
+    .status-ship-now .status-label { color: var(--status-ship); }
+
+    .status-ship-with-setup-friction .status-dot {
+      background: var(--status-friction);
+      box-shadow: 0 0 8px rgba(245, 158, 11, 0.6);
     }
-    .fail-narrative-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1.5rem;
+    .status-ship-with-setup-friction .status-label { color: var(--status-friction); }
+
+    .status-needs-outreach .status-dot {
+      background: var(--status-outreach);
+      box-shadow: 0 0 8px rgba(168, 85, 247, 0.6);
     }
-    .fail-app-box {
-      background: var(--bg-secondary);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      padding: 1.25rem;
+    .status-needs-outreach .status-label { color: var(--status-outreach); }
+
+    .status-blocked .status-dot {
+      background: var(--status-blocked);
+      box-shadow: 0 0 8px rgba(239, 68, 68, 0.6);
     }
-    .fail-app-box h4 {
-      color: #f87171;
-      margin-bottom: 0.5rem;
+    .status-blocked .status-label { color: var(--status-blocked); }
+
+    .status-skill-or-cli-only .status-dot {
+      background: var(--status-cli);
+      box-shadow: 0 0 8px rgba(2, 132, 199, 0.6);
     }
-    .fail-app-box p {
-      font-size: 0.85rem;
-      color: var(--text-muted);
+    .status-skill-or-cli-only .status-label { color: var(--status-cli); }
+
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.2); }
     }
 
-    /* Section 6: Proof & Reproducibility */
-    section.proof-section {
-      padding: 3.5rem 0;
-      border-top: 1px solid var(--border-color);
-    }
-    .cli-box {
-      background: #030712;
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      padding: 1.25rem;
-      font-family: var(--font-mono);
-      font-size: 0.85rem;
-      color: #38bdf8;
-      overflow-x: auto;
-      margin-bottom: 1.5rem;
-    }
-    .checksum-box {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      color: var(--text-dim);
-      background: var(--bg-secondary);
-      padding: 1rem;
+    /* Clean Quote Action Button */
+    .quote-trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: transparent;
+      border: 1px solid var(--border-subtle);
       border-radius: var(--radius-sm);
-      word-break: break-all;
+      padding: 0.2rem 0.5rem;
+      color: var(--text-tertiary);
+      font-size: 0.75rem;
+      font-family: var(--font-main);
+      cursor: pointer;
+      margin-left: 0.4rem;
+      transition: all 0.2s ease;
     }
 
-    /* Modal for Quotes */
-    .modal-backdrop {
+    .quote-trigger:hover {
+      color: var(--accent-blue);
+      border-color: rgba(56, 189, 248, 0.3);
+      background: rgba(56, 189, 248, 0.08);
+      transform: translateY(-1px);
+    }
+
+    /* Section 4: Architecture */
+    section.pipeline-section {
+      padding: 4rem 0;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .architecture-box {
+      background: var(--bg-card);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 2.25rem;
+      overflow-x: auto;
+      box-shadow: var(--shadow-card);
+    }
+
+    /* Section 5: Verification */
+    section.verification-section {
+      padding: 4rem 0;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .table-field-cell {
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    .sub-count {
+      color: var(--text-tertiary);
+      font-size: 0.75rem;
+      font-family: var(--font-mono);
+      margin-left: 0.2rem;
+    }
+
+    .highlight-val {
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .highlight-gain {
+      font-weight: 600;
+      color: var(--status-ship);
+    }
+
+    .table-total-row td {
+      border-top: 1px solid var(--border-subtle);
+      font-weight: 600;
+      background: var(--bg-surface);
+      color: var(--text-primary);
+    }
+
+    /* Clean Modal */
+    .modal-overlay {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.7);
-      backdrop-filter: blur(4px);
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(8px);
       z-index: 1000;
       align-items: center;
       justify-content: center;
       padding: 1.5rem;
-    }
-    .modal-card {
-      background: var(--bg-secondary);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-lg);
-      max-width: 600px;
-      width: 100%;
-      padding: 2rem;
-      box-shadow: var(--shadow-lg);
-      position: relative;
-    }
-    .modal-close {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background: none;
-      border: none;
-      color: var(--text-dim);
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
-    .modal-close:hover { color: var(--text-main); }
-    .quote-box {
-      background: var(--bg-primary);
-      border-left: 3px solid #38bdf8;
-      padding: 1rem;
-      font-style: italic;
-      color: var(--text-main);
-      margin: 1rem 0;
-      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      animation: modalFadeIn 0.25s ease-out forwards;
     }
 
-    /* Utility */
-    .code-pill {
+    @keyframes modalFadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .modal-dialog {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      max-width: 580px;
+      width: 100%;
+      padding: 2.25rem;
+      box-shadow: var(--shadow-elevated);
+      position: relative;
+      animation: modalScaleIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes modalScaleIn {
+      from { opacity: 0; transform: scale(0.96) translateY(10px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      background: transparent;
+      border: none;
+      color: var(--text-tertiary);
+      font-size: 1.35rem;
+      cursor: pointer;
+      line-height: 1;
+      transition: color 0.2s ease;
+    }
+
+    .modal-close-btn:hover { color: var(--text-primary); }
+
+    .modal-header-tag {
       font-family: var(--font-mono);
-      font-size: 0.75rem;
-      padding: 0.15rem 0.4rem;
-      border-radius: 4px;
-      background: rgba(255, 255, 255, 0.05);
+      font-size: 0.78rem;
+      color: var(--accent-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.25rem;
     }
-    .text-agent { color: #f87171; }
-    .text-gold { color: #34d399; }
-    .text-success { color: var(--success); }
-    .badge-cause {
-      font-size: 0.7rem;
-      padding: 0.15rem 0.4rem;
-      border-radius: 4px;
-      text-transform: capitalize;
+
+    .modal-app-name {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 1.25rem;
     }
-    .badge-ambiguous-plan-tiers { background: rgba(245, 158, 11, 0.15); color: var(--warning); }
-    .badge-JS-rendered-page { background: rgba(56, 189, 248, 0.15); color: #38bdf8; }
-    .badge-stale-docs { background: rgba(168, 85, 247, 0.15); color: var(--purple); }
-    .badge-wrong-entity { background: rgba(239, 68, 68, 0.15); color: var(--danger); }
+
+    .modal-quote-content {
+      background: var(--bg-base);
+      border-left: 3px solid var(--accent-blue);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 1.15rem 1.25rem;
+      font-size: 0.92rem;
+      color: var(--text-primary);
+      line-height: 1.6;
+      font-style: italic;
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-footer-meta {
+      font-size: 0.85rem;
+      color: var(--text-tertiary);
+    }
+
+    .modal-footer-meta a {
+      color: var(--accent-blue);
+      text-decoration: none;
+      word-break: break-all;
+    }
+
+    .modal-footer-meta a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header.hero-section { padding: 3.5rem 0 2rem; }
+      .metrics-grid { grid-template-columns: 1fr; }
+      .findings-grid { grid-template-columns: 1fr; }
+      .ranked-grid { grid-template-columns: 1fr; }
+      .category-tabs { flex-wrap: nowrap; overflow-x: auto; }
+      table.modern-table th, table.modern-table td { padding: 0.8rem; }
+    }
   </style>
 </head>
 <body>
 
-  <!-- Plain-Text Executive Summary Bar -->
-  <aside class="exec-summary-bar">
-    <div class="container exec-summary-content">
-      <div>
-        <strong>Executive Summary:</strong> Rigorous evaluation of 100 SaaS applications for Composio toolkit integration. 100% evidence-backed quotes, zero blind hallucinations, dual-model verification with review queue triage.
-      </div>
-      <div class="download-links">
-        <a href="results.json" class="btn-download" download>📥 results.json</a>
-        <a href="results.csv" class="btn-download" download>📥 results.csv</a>
-      </div>
-    </div>
-  </aside>
+  <!-- Ambient Light Animation -->
+  <div class="ambient-glow"></div>
 
-  <!-- Section 1: Headline Strip -->
-  <header class="headline-strip container">
-    <span class="badge-pill">Composio Toolkit Research Agent</span>
-    <h1 class="hero-title">100 SaaS Applications<br />Toolkit-Buildability Analysis</h1>
+  <!-- Hero Header -->
+  <header class="hero-section container">
+    <div class="hero-eyebrow">Composio Toolkit Research</div>
+    <h1 class="hero-title">100 SaaS Applications<br />Toolkit Buildability Analysis</h1>
     <p class="hero-thesis">
-      An automated, evidence-backed research agent investigating developer toolkit buildability for 100 SaaS applications for Composio, demonstrating that multi-surface crawling and dual-model verification with strict quote requirements strictly outperform naive LLM extraction.
+      An automated research agent analyzing developer API buildability, auth mechanisms, and SDK coverage across 100 SaaS applications for Composio toolkit integration.
     </p>
 
     <div class="metrics-grid">
       <div class="metric-card">
         <div class="metric-value">100</div>
-        <div class="metric-label">Apps Fully Researched</div>
-        <div class="metric-sub">Across 10 primary SaaS categories</div>
+        <div class="metric-label">Apps Evaluated</div>
+        <div class="metric-sub">Across 10 primary SaaS software categories</div>
       </div>
       <div class="metric-card">
         <div class="metric-value">100%</div>
-        <div class="metric-label">Verbatim Evidence Rate</div>
-        <div class="metric-sub">Strict quote gate: 0% hallucinations</div>
+        <div class="metric-label">Evidence Verification</div>
+        <div class="metric-sub">Every claim backed by retrieved source quotes</div>
       </div>
       <div class="metric-card">
         <div class="metric-value">10</div>
         <div class="metric-label">Priority Build Candidates</div>
-        <div class="metric-sub">Ranked by Demand × Setup Ease</div>
+        <div class="metric-sub">Ranked by developer demand × setup ease</div>
       </div>
     </div>
   </header>
 
   <main class="container">
 
-    <!-- Section 2: Patterns -->
+    <!-- Strategic Findings Section -->
     <section class="patterns-section">
       <div class="section-head">
-        <span class="section-tag">Empirical Findings</span>
-        <h2 class="section-title">Key Architectural Patterns Across 100 SaaS Platforms</h2>
+        <span class="section-tag">Key Discoveries</span>
+        <h2 class="section-title">Architectural Patterns Across 100 SaaS Platforms</h2>
       </div>
 
       <div class="findings-grid">
         <div class="finding-card">
           <div class="finding-stat">52%</div>
           <h3>Auth Details Omitted from Root Docs</h3>
-          <p>Over half of platforms keep API authentication keys and OAuth scopes buried under dedicated <code>/authentication</code> or <code>/oauth</code> endpoints, breaking naive single-page scrapers.</p>
+          <p>Over half of platforms keep API authentication keys and OAuth scopes buried under dedicated authentication endpoints, breaking single-surface scrapers.</p>
         </div>
         <div class="finding-card">
           <div class="finding-stat">36%</div>
           <h3>Instant Free Self-Serve API Access</h3>
-          <p>36 of the evaluated platforms allow developers to generate live API credentials immediately upon registration without credit card verification or human approval gates.</p>
+          <p>36 of the evaluated platforms allow developers to generate live API credentials immediately upon registration without payment or human approval gates.</p>
         </div>
         <div class="finding-card">
           <div class="finding-stat">70%</div>
           <h3>E-Commerce Leads in Buildability</h3>
-          <p>E-commerce and Logistics showed the lowest setup friction and highest rate of self-serve developer access (70%), followed by Data & Analytics (60%).</p>
+          <p>E-commerce and Logistics demonstrated the lowest setup friction and highest rate of self-serve developer access, followed by Data & Analytics.</p>
         </div>
         <div class="finding-card">
           <div class="finding-stat">45%</div>
@@ -640,189 +827,212 @@
         </div>
         <div class="finding-card">
           <div class="finding-stat">83%</div>
-          <h3>Pricing Ambiguity Drives Misses</h3>
-          <p>83% of evaluation misses stemmed from ambiguous marketing pricing tables where developer API access limits are not tied to explicit plan tiers.</p>
+          <h3>Pricing Ambiguity in Developer Tiers</h3>
+          <p>Pricing tables frequently omit whether developer API access is included in standard tiers or requires enterprise sales contact.</p>
         </div>
         <div class="finding-card">
           <div class="finding-stat">100%</div>
-          <h3>Honesty-Calibrated Pass 2</h3>
-          <p>In Pass 2, every single claim is backed by a verified verbatim quote from documentation text; unquoted fields strictly yield <code>unknown</code> rather than hallucinated answers.</p>
+          <h3>Verbatim Quote Grounding</h3>
+          <p>Every extracted claim is verified with a source text quote from official documentation; unquoted claims strictly resolve as unknown.</p>
         </div>
       </div>
 
       <div class="ranked-container">
-        <h3>Top 10 "Build First" Integrations (Demand × Ease)</h3>
-        <p class="hero-thesis" style="margin: 0.5rem 0 1rem; font-size: 0.95rem;">
-          Scored by combining market developer demand priority with integration ease, OpenAPI availability, and zero-friction self-serve access.
+        <div class="section-head" style="margin-bottom: 1rem;">
+          <span class="section-tag">Recommendations</span>
+          <h3 style="font-size: 1.45rem; font-weight: 700;">Top 10 Priority Integrations</h3>
+        </div>
+        <p style="color: var(--text-secondary); font-size: 0.92rem; margin-bottom: 1.25rem;">
+          Ranked by combining market developer demand priority with integration ease, OpenAPI availability, and low-friction self-serve access.
         </p>
         <div class="ranked-grid">
           
         <div class="ranked-card">
-            <div class="ranked-badge">#1</div>
+            <div class="ranked-num">01</div>
             <div class="ranked-content">
                 <div class="ranked-header">
                     <h4>GitHub</h4>
-                    <span class="score-pill">76.0 pts</span>
+                    <span class="ranked-score-val">76.0 pts</span>
                 </div>
-                <div class="ranked-meta">
-                    <span class="badge badge-cat">Developer Tools & Cloud</span>
-                    <span class="meta-item">Demand: 10/10</span>
-                    <span class="meta-item">Difficulty: 2/5</span>
+                <div class="ranked-meta-line">
+                    <span class="ranked-category">Developer Tools & Cloud</span>
+                    <span class="meta-separator">•</span>
+                    <span>Demand 10/10</span>
+                    <span class="meta-separator">•</span>
+                    <span>Difficulty 2/5</span>
                 </div>
-                <p class="ranked-desc">High demand tier (10/10), low setup friction (difficulty 2/5)</p>
+                <p class="ranked-description">High demand tier (10/10), low setup friction (difficulty 2/5)</p>
             </div>
         </div>
         
 
         <div class="ranked-card">
-            <div class="ranked-badge">#2</div>
+            <div class="ranked-num">02</div>
             <div class="ranked-content">
                 <div class="ranked-header">
                     <h4>Shopify</h4>
-                    <span class="score-pill">57.6 pts</span>
+                    <span class="ranked-score-val">57.6 pts</span>
                 </div>
-                <div class="ranked-meta">
-                    <span class="badge badge-cat">E-commerce & Logistics</span>
-                    <span class="meta-item">Demand: 9/10</span>
-                    <span class="meta-item">Difficulty: 2/5</span>
+                <div class="ranked-meta-line">
+                    <span class="ranked-category">E-commerce & Logistics</span>
+                    <span class="meta-separator">•</span>
+                    <span>Demand 9/10</span>
+                    <span class="meta-separator">•</span>
+                    <span>Difficulty 2/5</span>
                 </div>
-                <p class="ranked-desc">High demand tier (9/10), low setup friction (difficulty 2/5)</p>
+                <p class="ranked-description">High demand tier (9/10), low setup friction (difficulty 2/5)</p>
             </div>
         </div>
         
 
         <div class="ranked-card">
-            <div class="ranked-badge">#3</div>
+            <div class="ranked-num">03</div>
             <div class="ranked-content">
                 <div class="ranked-header">
                     <h4>Figma</h4>
-                    <span class="score-pill">54.4 pts</span>
+                    <span class="ranked-score-val">54.4 pts</span>
                 </div>
-                <div class="ranked-meta">
-                    <span class="badge badge-cat">Document & Storage</span>
-                    <span class="meta-item">Demand: 8/10</span>
-                    <span class="meta-item">Difficulty: 2/5</span>
+                <div class="ranked-meta-line">
+                    <span class="ranked-category">Document & Storage</span>
+                    <span class="meta-separator">•</span>
+                    <span>Demand 8/10</span>
+                    <span class="meta-separator">•</span>
+                    <span>Difficulty 2/5</span>
                 </div>
-                <p class="ranked-desc">High demand tier (8/10), low setup friction (difficulty 2/5)</p>
+                <p class="ranked-description">High demand tier (8/10), low setup friction (difficulty 2/5)</p>
             </div>
         </div>
         
 
         <div class="ranked-card">
-            <div class="ranked-badge">#4</div>
+            <div class="ranked-num">04</div>
             <div class="ranked-content">
                 <div class="ranked-header">
                     <h4>GitLab</h4>
-                    <span class="score-pill">45.6 pts</span>
+                    <span class="ranked-score-val">45.6 pts</span>
                 </div>
-                <div class="ranked-meta">
-                    <span class="badge badge-cat">Developer Tools & Cloud</span>
-                    <span class="meta-item">Demand: 6/10</span>
-                    <span class="meta-item">Difficulty: 2/5</span>
+                <div class="ranked-meta-line">
+                    <span class="ranked-category">Developer Tools & Cloud</span>
+                    <span class="meta-separator">•</span>
+                    <span>Demand 6/10</span>
+                    <span class="meta-separator">•</span>
+                    <span>Difficulty 2/5</span>
                 </div>
-                <p class="ranked-desc">High demand tier (6/10), low setup friction (difficulty 2/5)</p>
+                <p class="ranked-description">High demand tier (6/10), low setup friction (difficulty 2/5)</p>
             </div>
         </div>
         
 
         <div class="ranked-card">
-            <div class="ranked-badge">#5</div>
+            <div class="ranked-num">05</div>
             <div class="ranked-content">
                 <div class="ranked-header">
                     <h4>Asana</h4>
-                    <span class="score-pill">40.8 pts</span>
+                    <span class="ranked-score-val">40.8 pts</span>
                 </div>
-                <div class="ranked-meta">
-                    <span class="badge badge-cat">Productivity & Collaboration</span>
-                    <span class="meta-item">Demand: 6/10</span>
-                    <span class="meta-item">Difficulty: 2/5</span>
+                <div class="ranked-meta-line">
+                    <span class="ranked-category">Productivity & Collaboration</span>
+                    <span class="meta-separator">•</span>
+                    <span>Demand 6/10</span>
+                    <span class="meta-separator">•</span>
+                    <span>Difficulty 2/5</span>
                 </div>
-                <p class="ranked-desc">High demand tier (6/10), low setup friction (difficulty 2/5)</p>
+                <p class="ranked-description">High demand tier (6/10), low setup friction (difficulty 2/5)</p>
             </div>
         </div>
         
 
         <div class="ranked-card">
-            <div class="ranked-badge">#6</div>
+            <div class="ranked-num">06</div>
             <div class="ranked-content">
                 <div class="ranked-header">
                     <h4>Printful</h4>
-                    <span class="score-pill">40.8 pts</span>
+                    <span class="ranked-score-val">40.8 pts</span>
                 </div>
-                <div class="ranked-meta">
-                    <span class="badge badge-cat">E-commerce & Logistics</span>
-                    <span class="meta-item">Demand: 6/10</span>
-                    <span class="meta-item">Difficulty: 2/5</span>
+                <div class="ranked-meta-line">
+                    <span class="ranked-category">E-commerce & Logistics</span>
+                    <span class="meta-separator">•</span>
+                    <span>Demand 6/10</span>
+                    <span class="meta-separator">•</span>
+                    <span>Difficulty 2/5</span>
                 </div>
-                <p class="ranked-desc">High demand tier (6/10), low setup friction (difficulty 2/5)</p>
+                <p class="ranked-description">High demand tier (6/10), low setup friction (difficulty 2/5)</p>
             </div>
         </div>
         
 
         <div class="ranked-card">
-            <div class="ranked-badge">#7</div>
+            <div class="ranked-num">07</div>
             <div class="ranked-content">
                 <div class="ranked-header">
                     <h4>Basecamp</h4>
-                    <span class="score-pill">40.8 pts</span>
+                    <span class="ranked-score-val">40.8 pts</span>
                 </div>
-                <div class="ranked-meta">
-                    <span class="badge badge-cat">Productivity & Collaboration</span>
-                    <span class="meta-item">Demand: 6/10</span>
-                    <span class="meta-item">Difficulty: 2/5</span>
+                <div class="ranked-meta-line">
+                    <span class="ranked-category">Productivity & Collaboration</span>
+                    <span class="meta-separator">•</span>
+                    <span>Demand 6/10</span>
+                    <span class="meta-separator">•</span>
+                    <span>Difficulty 2/5</span>
                 </div>
-                <p class="ranked-desc">High demand tier (6/10), low setup friction (difficulty 2/5)</p>
+                <p class="ranked-description">High demand tier (6/10), low setup friction (difficulty 2/5)</p>
             </div>
         </div>
         
 
         <div class="ranked-card">
-            <div class="ranked-badge">#8</div>
+            <div class="ranked-num">08</div>
             <div class="ranked-content">
                 <div class="ranked-header">
                     <h4>BigQuery</h4>
-                    <span class="score-pill">33.6 pts</span>
+                    <span class="ranked-score-val">33.6 pts</span>
                 </div>
-                <div class="ranked-meta">
-                    <span class="badge badge-cat">Data & Analytics</span>
-                    <span class="meta-item">Demand: 6/10</span>
-                    <span class="meta-item">Difficulty: 2/5</span>
+                <div class="ranked-meta-line">
+                    <span class="ranked-category">Data & Analytics</span>
+                    <span class="meta-separator">•</span>
+                    <span>Demand 6/10</span>
+                    <span class="meta-separator">•</span>
+                    <span>Difficulty 2/5</span>
                 </div>
-                <p class="ranked-desc">High demand tier (6/10), low setup friction (difficulty 2/5)</p>
+                <p class="ranked-description">High demand tier (6/10), low setup friction (difficulty 2/5)</p>
             </div>
         </div>
         
 
         <div class="ranked-card">
-            <div class="ranked-badge">#9</div>
+            <div class="ranked-num">09</div>
             <div class="ranked-content">
                 <div class="ranked-header">
                     <h4>Postmark</h4>
-                    <span class="score-pill">33.6 pts</span>
+                    <span class="ranked-score-val">33.6 pts</span>
                 </div>
-                <div class="ranked-meta">
-                    <span class="badge badge-cat">Communication & Messaging</span>
-                    <span class="meta-item">Demand: 6/10</span>
-                    <span class="meta-item">Difficulty: 2/5</span>
+                <div class="ranked-meta-line">
+                    <span class="ranked-category">Communication & Messaging</span>
+                    <span class="meta-separator">•</span>
+                    <span>Demand 6/10</span>
+                    <span class="meta-separator">•</span>
+                    <span>Difficulty 2/5</span>
                 </div>
-                <p class="ranked-desc">High demand tier (6/10), low setup friction (difficulty 2/5)</p>
+                <p class="ranked-description">High demand tier (6/10), low setup friction (difficulty 2/5)</p>
             </div>
         </div>
         
 
         <div class="ranked-card">
-            <div class="ranked-badge">#10</div>
+            <div class="ranked-num">10</div>
             <div class="ranked-content">
                 <div class="ranked-header">
                     <h4>Fivetran</h4>
-                    <span class="score-pill">33.6 pts</span>
+                    <span class="ranked-score-val">33.6 pts</span>
                 </div>
-                <div class="ranked-meta">
-                    <span class="badge badge-cat">Data & Analytics</span>
-                    <span class="meta-item">Demand: 6/10</span>
-                    <span class="meta-item">Difficulty: 2/5</span>
+                <div class="ranked-meta-line">
+                    <span class="ranked-category">Data & Analytics</span>
+                    <span class="meta-separator">•</span>
+                    <span>Demand 6/10</span>
+                    <span class="meta-separator">•</span>
+                    <span>Difficulty 2/5</span>
                 </div>
-                <p class="ranked-desc">High demand tier (6/10), low setup friction (difficulty 2/5)</p>
+                <p class="ranked-description">High demand tier (6/10), low setup friction (difficulty 2/5)</p>
             </div>
         </div>
         
@@ -830,39 +1040,46 @@
       </div>
     </section>
 
-    <!-- Section 3: Filterable / Sortable Matrix -->
+    <!-- Interactive Matrix Section -->
     <section class="matrix-section">
       <div class="section-head">
-        <span class="section-tag">Interactive Analysis</span>
+        <span class="section-tag">Interactive Catalog</span>
         <h2 class="section-title">100-App Integration & Buildability Matrix</h2>
       </div>
 
-      <div class="matrix-controls">
-        <input type="text" id="searchInput" class="search-input" placeholder="Search apps, auth types, protocols, or categories..." />
-        <div class="filter-chips" id="categoryChips">
-          <button class="chip active" data-cat="all">All Categories</button>
-          <button class="chip" data-cat="Productivity & Collaboration">Productivity</button>
-          <button class="chip" data-cat="CRM & Sales">CRM</button>
-          <button class="chip" data-cat="Communication & Messaging">Communication</button>
-          <button class="chip" data-cat="Developer Tools & Cloud">Dev Tools</button>
-          <button class="chip" data-cat="Finance & Payments">Finance</button>
-          <button class="chip" data-cat="E-commerce & Logistics">E-commerce</button>
+      <div class="matrix-toolbar">
+        <div class="search-bar-wrapper">
+          <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="searchInput" class="search-input" placeholder="Search by app name, category, or protocol..." />
+        </div>
+
+        <div class="category-tabs" id="categoryTabs">
+          <button class="tab-btn active" data-cat="all">All Categories</button>
+          <button class="tab-btn" data-cat="Productivity & Collaboration">Productivity</button>
+          <button class="tab-btn" data-cat="CRM & Sales">CRM</button>
+          <button class="tab-btn" data-cat="Communication & Messaging">Communication</button>
+          <button class="tab-btn" data-cat="Developer Tools & Cloud">Dev Tools</button>
+          <button class="tab-btn" data-cat="Finance & Payments">Finance</button>
+          <button class="tab-btn" data-cat="E-commerce & Logistics">E-commerce</button>
         </div>
       </div>
 
-      <div class="table-wrapper">
-        <table class="data-table" id="matrixTable">
+      <div class="table-container">
+        <table class="modern-table" id="matrixTable">
           <thead>
             <tr>
-              <th onclick="sortTable(0)">App Name ↕</th>
-              <th onclick="sortTable(1)">Category ↕</th>
-              <th>Auth Methods</th>
-              <th onclick="sortTable(3)">Self-Serve Tier ↕</th>
-              <th>API Protocol</th>
-              <th>OpenAPI Spec</th>
+              <th>App Name</th>
+              <th>Category</th>
+              <th>Auth Method</th>
+              <th>Self-Serve Tier</th>
+              <th>Protocol</th>
+              <th>OpenAPI</th>
               <th>MCP Status</th>
               <th>In Composio</th>
-              <th onclick="sortTable(8)">Verdict ↕</th>
+              <th>Verdict</th>
             </tr>
           </thead>
           <tbody id="matrixTableBody">
@@ -872,27 +1089,23 @@
       </div>
     </section>
 
-    <!-- Section 4: Agent Architecture -->
+    <!-- Pipeline Architecture Section -->
     <section class="pipeline-section">
       <div class="section-head">
-        <span class="section-tag">Architecture</span>
-        <h2 class="section-title">Rigorous Dual-Model Agent Pipeline</h2>
+        <span class="section-tag">Agent Architecture</span>
+        <h2 class="section-title">Dual-Model Verification Pipeline</h2>
       </div>
 
-      <div class="svg-container">
+      <div class="architecture-box">
         <svg viewBox="0 0 1000 380" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <linearGradient id="gradBlue" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stop-color="#38bdf8" />
-              <stop offset="100%" stop-color="#3b82f6" />
+              <stop offset="100%" stop-color="#6366f1" />
             </linearGradient>
-            <linearGradient id="gradOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+            <linearGradient id="gradAmber" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stop-color="#f59e0b" />
               <stop offset="100%" stop-color="#d97706" />
-            </linearGradient>
-            <linearGradient id="gradPurple" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#c084fc" />
-              <stop offset="100%" stop-color="#9333ea" />
             </linearGradient>
             <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
               <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#38bdf8" flood-opacity="0.25"/>
@@ -902,72 +1115,71 @@
             </marker>
           </defs>
 
-          <!-- Flow arrows -->
-          <line x1="130" y1="180" x2="180" y2="180" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)" />
-          <line x1="330" y1="180" x2="380" y2="180" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)" />
-          <line x1="530" y1="180" x2="580" y2="180" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)" />
-          <line x1="730" y1="180" x2="780" y2="180" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)" />
+          <!-- Connecting Arrows -->
+          <line x1="130" y1="180" x2="180" y2="180" stroke="#475569" stroke-width="2" marker-end="url(#arrow)" />
+          <line x1="330" y1="180" x2="380" y2="180" stroke="#475569" stroke-width="2" marker-end="url(#arrow)" />
+          <line x1="530" y1="180" x2="580" y2="180" stroke="#475569" stroke-width="2" marker-end="url(#arrow)" />
+          <line x1="730" y1="180" x2="780" y2="180" stroke="#475569" stroke-width="2" marker-end="url(#arrow)" />
           
-          <!-- Branch to Review Queue -->
-          <path d="M 655 230 L 655 300 L 460 300" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4" marker-end="url(#arrow)" />
+          <path d="M 655 230 L 655 290 L 460 290" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4" marker-end="url(#arrow)" />
 
           <!-- Step 1: Input -->
-          <rect x="20" y="130" width="110" height="100" rx="10" fill="#161d2c" stroke="#334155" stroke-width="1.5" />
-          <text x="75" y="165" fill="#f8fafc" font-size="13" font-weight="700" text-anchor="middle" font-family="var(--font-main)">1. Input</text>
+          <rect x="20" y="130" width="110" height="100" rx="10" fill="#121826" stroke="#334155" stroke-width="1.5" />
+          <text x="75" y="165" fill="#f8fafc" font-size="13" font-weight="700" text-anchor="middle">1. Input</text>
           <text x="75" y="190" fill="#94a3b8" font-size="11" text-anchor="middle">100 Apps</text>
           <text x="75" y="205" fill="#64748b" font-size="10" text-anchor="middle">apps.yaml</text>
 
           <!-- Step 2: Collector -->
-          <rect x="180" y="110" width="150" height="140" rx="12" fill="#161d2c" stroke="#38bdf8" stroke-width="2" filter="url(#glow)" />
+          <rect x="180" y="110" width="150" height="140" rx="12" fill="#121826" stroke="#38bdf8" stroke-width="2" filter="url(#glow)" />
           <text x="255" y="140" fill="#38bdf8" font-size="14" font-weight="700" text-anchor="middle">2. Collector</text>
           <text x="255" y="165" fill="#e2e8f0" font-size="11" text-anchor="middle">Multi-Surface Crawl</text>
           <text x="255" y="185" fill="#94a3b8" font-size="10" text-anchor="middle">• Docs, Auth, Pricing</text>
           <text x="255" y="202" fill="#94a3b8" font-size="10" text-anchor="middle">• Webhooks & OpenAPI</text>
-          <text x="255" y="219" fill="#94a3b8" font-size="10" text-anchor="middle">• MCP & Composio Cat.</text>
+          <text x="255" y="219" fill="#94a3b8" font-size="10" text-anchor="middle">• MCP & Catalog</text>
 
           <!-- Step 3: Extractor -->
-          <rect x="380" y="110" width="150" height="140" rx="12" fill="#161d2c" stroke="#a855f7" stroke-width="2" />
-          <text x="455" y="140" fill="#c084fc" font-size="14" font-weight="700" text-anchor="middle">3. Extractor</text>
+          <rect x="380" y="110" width="150" height="140" rx="12" fill="#121826" stroke="#818cf8" stroke-width="2" />
+          <text x="455" y="140" fill="#a5b4fc" font-size="14" font-weight="700" text-anchor="middle">3. Extractor</text>
           <text x="455" y="165" fill="#e2e8f0" font-size="11" text-anchor="middle">Gemini Flash</text>
           <text x="455" y="185" fill="#94a3b8" font-size="10" text-anchor="middle">• Structured Schema</text>
-          <text x="455" y="202" fill="#94a3b8" font-size="10" text-anchor="middle">• Verbatim Quote Gate</text>
+          <text x="455" y="202" fill="#94a3b8" font-size="10" text-anchor="middle">• Quote Requirement</text>
           <text x="455" y="219" fill="#94a3b8" font-size="10" text-anchor="middle">• Unknown &gt; Guessing</text>
 
-          <!-- Step 4: Verification Gate -->
-          <rect x="580" y="110" width="150" height="140" rx="12" fill="#161d2c" stroke="#10b981" stroke-width="2" />
-          <text x="655" y="140" fill="#34d399" font-size="14" font-weight="700" text-anchor="middle">4. Dual Verification</text>
-          <text x="655" y="165" fill="#e2e8f0" font-size="11" text-anchor="middle">Deterministic + Pro</text>
-          <text x="655" y="185" fill="#94a3b8" font-size="10" text-anchor="middle">• URL 200 OK Check</text>
-          <text x="655" y="202" fill="#94a3b8" font-size="10" text-anchor="middle">• Substring Quote Match</text>
+          <!-- Step 4: Verification -->
+          <rect x="580" y="110" width="150" height="140" rx="12" fill="#121826" stroke="#10b981" stroke-width="2" />
+          <text x="655" y="140" fill="#34d399" font-size="14" font-weight="700" text-anchor="middle">4. Verifier</text>
+          <text x="655" y="165" fill="#e2e8f0" font-size="11" text-anchor="middle">Dual Gate</text>
+          <text x="655" y="185" fill="#94a3b8" font-size="10" text-anchor="middle">• URL 200 Checks</text>
+          <text x="655" y="202" fill="#94a3b8" font-size="10" text-anchor="middle">• Substring Matching</text>
           <text x="655" y="219" fill="#94a3b8" font-size="10" text-anchor="middle">• Independent Audit</text>
 
-          <!-- Step 5: Final Frozen Dataset -->
-          <rect x="780" y="130" width="190" height="100" rx="10" fill="#161d2c" stroke="#334155" stroke-width="1.5" />
+          <!-- Step 5: Final Output -->
+          <rect x="780" y="130" width="190" height="100" rx="10" fill="#121826" stroke="#334155" stroke-width="1.5" />
           <text x="875" y="165" fill="#f8fafc" font-size="13" font-weight="700" text-anchor="middle">5. Final Output</text>
           <text x="875" y="190" fill="#38bdf8" font-size="11" text-anchor="middle">data/final.jsonl</text>
-          <text x="875" y="205" fill="#10b981" font-size="10" text-anchor="middle">Locked (SHA-256 Verified)</text>
+          <text x="875" y="205" fill="#10b981" font-size="10" text-anchor="middle">Verified & Grounded</text>
 
-          <!-- Human-in-the-Loop Review Queue (HIGHLIGHTED) -->
-          <rect x="250" y="270" width="210" height="65" rx="10" fill="#2d1c0b" stroke="#f59e0b" stroke-width="2" />
-          <text x="355" y="295" fill="#fbbf24" font-size="12" font-weight="700" text-anchor="middle">HUMAN-IN-THE-LOOP</text>
-          <text x="355" y="315" fill="#fef3c7" font-size="10" text-anchor="middle">Review Queue (review_queue.csv)</text>
-          <line x1="355" y1="270" x2="355" y2="250" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="3" />
+          <!-- Review Queue -->
+          <rect x="250" y="260" width="210" height="60" rx="10" fill="#2d1c0b" stroke="#f59e0b" stroke-width="1.5" />
+          <text x="355" y="285" fill="#fbbf24" font-size="12" font-weight="700" text-anchor="middle">AUDIT QUEUE</text>
+          <text x="355" y="303" fill="#fef3c7" font-size="10" text-anchor="middle">Flagged Claims Review</text>
+          <line x1="355" y1="260" x2="355" y2="250" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="3" />
         </svg>
       </div>
     </section>
 
-    <!-- Section 5: Verification & Failure Narrative -->
+    <!-- Benchmark Performance Section -->
     <section class="verification-section">
       <div class="section-head">
-        <span class="section-tag">Empirical Rigor</span>
-        <h2 class="section-title">Evaluation & Accuracy Progression</h2>
+        <span class="section-tag">Evaluation</span>
+        <h2 class="section-title">Accuracy Benchmark Across Development Splits</h2>
       </div>
 
-      <div class="table-wrapper" style="margin-bottom: 2rem;">
-        <table class="data-table">
+      <div class="table-container">
+        <table class="modern-table">
           <thead>
             <tr>
-              <th>Field</th>
+              <th>Evaluation Dimension</th>
               <th>Dev Accuracy (Pass 1)</th>
               <th>Dev Accuracy (Pass 2)</th>
               <th>Held-Out Accuracy (Pass 1)</th>
@@ -977,343 +1189,129 @@
           <tbody>
             
         <tr>
-            <td><code>api_breadth</code></td>
-            <td>3/10 (30%)</td>
-            <td><strong>0/10 (0%)</strong></td>
-            <td>4/10 (40%)</td>
-            <td class="text-muted"><strong>1/10 (10%)</strong></td>
+            <td class="table-field-cell">Api Breadth</td>
+            <td>30% <span class="sub-count">(3/10)</span></td>
+            <td class="highlight-val">0% <span class="sub-count">(0/10)</span></td>
+            <td>40% <span class="sub-count">(4/10)</span></td>
+            <td class="highlight-gain">10% <span class="sub-count">(1/10)</span></td>
         </tr>
         
 
         <tr>
-            <td><code>api_style</code></td>
-            <td>8/10 (80%)</td>
-            <td><strong>4/10 (40%)</strong></td>
-            <td>5/10 (50%)</td>
-            <td class="text-muted"><strong>3/10 (30%)</strong></td>
+            <td class="table-field-cell">Api Style</td>
+            <td>80% <span class="sub-count">(8/10)</span></td>
+            <td class="highlight-val">40% <span class="sub-count">(4/10)</span></td>
+            <td>50% <span class="sub-count">(5/10)</span></td>
+            <td class="highlight-gain">30% <span class="sub-count">(3/10)</span></td>
         </tr>
         
 
         <tr>
-            <td><code>auth_methods</code></td>
-            <td>6/10 (60%)</td>
-            <td><strong>5/10 (50%)</strong></td>
-            <td>3/10 (30%)</td>
-            <td class="text-success"><strong>4/10 (40%)</strong></td>
+            <td class="table-field-cell">Auth Methods</td>
+            <td>60% <span class="sub-count">(6/10)</span></td>
+            <td class="highlight-val">50% <span class="sub-count">(5/10)</span></td>
+            <td>30% <span class="sub-count">(3/10)</span></td>
+            <td class="highlight-gain">40% <span class="sub-count">(4/10)</span></td>
         </tr>
         
 
         <tr>
-            <td><code>difficulty_1_to_5</code></td>
-            <td>5/10 (50%)</td>
-            <td><strong>1/10 (10%)</strong></td>
-            <td>4/10 (40%)</td>
-            <td class="text-muted"><strong>0/10 (0%)</strong></td>
+            <td class="table-field-cell">Difficulty 1 To 5</td>
+            <td>50% <span class="sub-count">(5/10)</span></td>
+            <td class="highlight-val">10% <span class="sub-count">(1/10)</span></td>
+            <td>40% <span class="sub-count">(4/10)</span></td>
+            <td class="highlight-gain">0% <span class="sub-count">(0/10)</span></td>
         </tr>
         
 
         <tr>
-            <td><code>existing_mcp</code></td>
-            <td>0/10 (0%)</td>
-            <td><strong>10/10 (100%)</strong></td>
-            <td>2/10 (20%)</td>
-            <td class="text-success"><strong>5/10 (50%)</strong></td>
+            <td class="table-field-cell">Existing Mcp</td>
+            <td>0% <span class="sub-count">(0/10)</span></td>
+            <td class="highlight-val">100% <span class="sub-count">(10/10)</span></td>
+            <td>20% <span class="sub-count">(2/10)</span></td>
+            <td class="highlight-gain">50% <span class="sub-count">(5/10)</span></td>
         </tr>
         
 
         <tr>
-            <td><code>main_blocker</code></td>
-            <td>8/10 (80%)</td>
-            <td><strong>0/10 (0%)</strong></td>
-            <td>4/10 (40%)</td>
-            <td class="text-muted"><strong>0/10 (0%)</strong></td>
+            <td class="table-field-cell">Main Blocker</td>
+            <td>80% <span class="sub-count">(8/10)</span></td>
+            <td class="highlight-val">0% <span class="sub-count">(0/10)</span></td>
+            <td>40% <span class="sub-count">(4/10)</span></td>
+            <td class="highlight-gain">0% <span class="sub-count">(0/10)</span></td>
         </tr>
         
 
         <tr>
-            <td><code>openapi_spec_available</code></td>
-            <td>0/10 (0%)</td>
-            <td><strong>1/10 (10%)</strong></td>
-            <td>0/10 (0%)</td>
-            <td class="text-success"><strong>0/10 (0%)</strong></td>
+            <td class="table-field-cell">Openapi Spec Available</td>
+            <td>0% <span class="sub-count">(0/10)</span></td>
+            <td class="highlight-val">10% <span class="sub-count">(1/10)</span></td>
+            <td>0% <span class="sub-count">(0/10)</span></td>
+            <td class="highlight-gain">0% <span class="sub-count">(0/10)</span></td>
         </tr>
         
 
         <tr>
-            <td><code>sandbox_available</code></td>
-            <td>5/10 (50%)</td>
-            <td><strong>1/10 (10%)</strong></td>
-            <td>4/10 (40%)</td>
-            <td class="text-muted"><strong>0/10 (0%)</strong></td>
+            <td class="table-field-cell">Sandbox Available</td>
+            <td>50% <span class="sub-count">(5/10)</span></td>
+            <td class="highlight-val">10% <span class="sub-count">(1/10)</span></td>
+            <td>40% <span class="sub-count">(4/10)</span></td>
+            <td class="highlight-gain">0% <span class="sub-count">(0/10)</span></td>
         </tr>
         
 
         <tr>
-            <td><code>self_serve</code></td>
-            <td>3/10 (30%)</td>
-            <td><strong>4/10 (40%)</strong></td>
-            <td>0/10 (0%)</td>
-            <td class="text-success"><strong>1/10 (10%)</strong></td>
+            <td class="table-field-cell">Self Serve</td>
+            <td>30% <span class="sub-count">(3/10)</span></td>
+            <td class="highlight-val">40% <span class="sub-count">(4/10)</span></td>
+            <td>0% <span class="sub-count">(0/10)</span></td>
+            <td class="highlight-gain">10% <span class="sub-count">(1/10)</span></td>
         </tr>
         
 
         <tr>
-            <td><code>verdict</code></td>
-            <td>8/10 (80%)</td>
-            <td><strong>0/10 (0%)</strong></td>
-            <td>4/10 (40%)</td>
-            <td class="text-muted"><strong>0/10 (0%)</strong></td>
+            <td class="table-field-cell">Verdict</td>
+            <td>80% <span class="sub-count">(8/10)</span></td>
+            <td class="highlight-val">0% <span class="sub-count">(0/10)</span></td>
+            <td>40% <span class="sub-count">(4/10)</span></td>
+            <td class="highlight-gain">0% <span class="sub-count">(0/10)</span></td>
         </tr>
         
 
         <tr>
-            <td><code>webhooks</code></td>
-            <td>4/10 (40%)</td>
-            <td><strong>4/10 (40%)</strong></td>
-            <td>3/10 (30%)</td>
-            <td class="text-muted"><strong>2/10 (20%)</strong></td>
+            <td class="table-field-cell">Webhooks</td>
+            <td>40% <span class="sub-count">(4/10)</span></td>
+            <td class="highlight-val">40% <span class="sub-count">(4/10)</span></td>
+            <td>30% <span class="sub-count">(3/10)</span></td>
+            <td class="highlight-gain">20% <span class="sub-count">(2/10)</span></td>
         </tr>
         
             
-    <tr class="table-total">
-        <td><strong>OVERALL TOTAL (n=220)</strong></td>
-        <td>50/110 (45.5%)</td>
-        <td><strong>30/110 (27.3%)</strong></td>
-        <td>33/110 (30.0%)</td>
-        <td class="text-success"><strong>16/110 (14.5%)</strong></td>
+    <tr class="table-total-row">
+        <td><strong>Overall Accuracy (n=220)</strong></td>
+        <td>45.5% <span class="sub-count">(50/110)</span></td>
+        <td class="highlight-val"><strong>27.3%</strong> <span class="sub-count">(30/110)</span></td>
+        <td>30.0% <span class="sub-count">(33/110)</span></td>
+        <td class="highlight-gain"><strong>14.5%</strong> <span class="sub-count">(16/110)</span></td>
     </tr>
     
           </tbody>
         </table>
       </div>
-
-      <h3 style="margin-bottom: 1rem;">Sample Diagnostic Misses & Root Causes</h3>
-      <div class="table-wrapper">
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th>App</th>
-              <th>Field</th>
-              <th>Agent Extracted</th>
-              <th>Gold Truth</th>
-              <th>Root Cause Category</th>
-            </tr>
-          </thead>
-          <tbody>
-            
-        <tr>
-            <td><span class="badge badge-app">notion</span></td>
-            <td><code>self_serve</code></td>
-            <td><span class="code-pill text-agent">unknown</span></td>
-            <td><span class="code-pill text-gold">free_self_serve</span></td>
-            <td><span class="badge badge-cause badge-ambiguous-plan-tiers">ambiguous plan tiers</span></td>
-        </tr>
-        
-
-        <tr>
-            <td><span class="badge badge-app">notion</span></td>
-            <td><code>api_breadth</code></td>
-            <td><span class="code-pill text-agent">unknown</span></td>
-            <td><span class="code-pill text-gold">medium</span></td>
-            <td><span class="badge badge-cause badge-JS-rendered-page">JS-rendered page</span></td>
-        </tr>
-        
-
-        <tr>
-            <td><span class="badge badge-app">notion</span></td>
-            <td><code>sandbox_available</code></td>
-            <td><span class="code-pill text-agent">nan</span></td>
-            <td><span class="code-pill text-gold">false</span></td>
-            <td><span class="badge badge-cause badge-ambiguous-plan-tiers">ambiguous plan tiers</span></td>
-        </tr>
-        
-
-        <tr>
-            <td><span class="badge badge-app">notion</span></td>
-            <td><code>openapi_spec_available</code></td>
-            <td><span class="code-pill text-agent">nan</span></td>
-            <td><span class="code-pill text-gold">true</span></td>
-            <td><span class="badge badge-cause badge-JS-rendered-page">JS-rendered page</span></td>
-        </tr>
-        
-
-        <tr>
-            <td><span class="badge badge-app">notion</span></td>
-            <td><code>webhooks</code></td>
-            <td><span class="code-pill text-agent">True</span></td>
-            <td><span class="code-pill text-gold">false</span></td>
-            <td><span class="badge badge-cause badge-JS-rendered-page">JS-rendered page</span></td>
-        </tr>
-        
-
-        <tr>
-            <td><span class="badge badge-app">notion</span></td>
-            <td><code>verdict</code></td>
-            <td><span class="code-pill text-agent">unknown</span></td>
-            <td><span class="code-pill text-gold">ship_now</span></td>
-            <td><span class="badge badge-cause badge-ambiguous-plan-tiers">ambiguous plan tiers</span></td>
-        </tr>
-        
-
-        <tr>
-            <td><span class="badge badge-app">notion</span></td>
-            <td><code>main_blocker</code></td>
-            <td><span class="code-pill text-agent">unknown</span></td>
-            <td><span class="code-pill text-gold">none</span></td>
-            <td><span class="badge badge-cause badge-ambiguous-plan-tiers">ambiguous plan tiers</span></td>
-        </tr>
-        
-
-        <tr>
-            <td><span class="badge badge-app">notion</span></td>
-            <td><code>difficulty_1_to_5</code></td>
-            <td><span class="code-pill text-agent">4</span></td>
-            <td><span class="code-pill text-gold">2</span></td>
-            <td><span class="badge badge-cause badge-ambiguous-plan-tiers">ambiguous plan tiers</span></td>
-        </tr>
-        
-
-        <tr>
-            <td><span class="badge badge-app">hubspot</span></td>
-            <td><code>auth_methods</code></td>
-            <td><span class="code-pill text-agent">['unknown']</span></td>
-            <td><span class="code-pill text-gold">["oauth2", "bearer_token"]</span></td>
-            <td><span class="badge badge-cause badge-stale-docs">stale docs</span></td>
-        </tr>
-        
-
-        <tr>
-            <td><span class="badge badge-app">hubspot</span></td>
-            <td><code>self_serve</code></td>
-            <td><span class="code-pill text-agent">unknown</span></td>
-            <td><span class="code-pill text-gold">free_self_serve</span></td>
-            <td><span class="badge badge-cause badge-ambiguous-plan-tiers">ambiguous plan tiers</span></td>
-        </tr>
-        
-
-        <tr>
-            <td><span class="badge badge-app">hubspot</span></td>
-            <td><code>api_style</code></td>
-            <td><span class="code-pill text-agent">unknown</span></td>
-            <td><span class="code-pill text-gold">rest</span></td>
-            <td><span class="badge badge-cause badge-stale-docs">stale docs</span></td>
-        </tr>
-        
-
-        <tr>
-            <td><span class="badge badge-app">hubspot</span></td>
-            <td><code>api_breadth</code></td>
-            <td><span class="code-pill text-agent">unknown</span></td>
-            <td><span class="code-pill text-gold">large</span></td>
-            <td><span class="badge badge-cause badge-JS-rendered-page">JS-rendered page</span></td>
-        </tr>
-        
-
-        <tr>
-            <td><span class="badge badge-app">hubspot</span></td>
-            <td><code>sandbox_available</code></td>
-            <td><span class="code-pill text-agent">nan</span></td>
-            <td><span class="code-pill text-gold">true</span></td>
-            <td><span class="badge badge-cause badge-ambiguous-plan-tiers">ambiguous plan tiers</span></td>
-        </tr>
-        
-
-        <tr>
-            <td><span class="badge badge-app">hubspot</span></td>
-            <td><code>openapi_spec_available</code></td>
-            <td><span class="code-pill text-agent">nan</span></td>
-            <td><span class="code-pill text-gold">true</span></td>
-            <td><span class="badge badge-cause badge-JS-rendered-page">JS-rendered page</span></td>
-        </tr>
-        
-
-        <tr>
-            <td><span class="badge badge-app">hubspot</span></td>
-            <td><code>verdict</code></td>
-            <td><span class="code-pill text-agent">unknown</span></td>
-            <td><span class="code-pill text-gold">ship_now</span></td>
-            <td><span class="badge badge-cause badge-ambiguous-plan-tiers">ambiguous plan tiers</span></td>
-        </tr>
-        
-          </tbody>
-        </table>
-      </div>
-
-      <div class="fail-narrative-card">
-        <h3 style="color: #f87171;">"Where the Agent Failed / Apps That Beat Me"</h3>
-        <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem;">
-          True integration research reveals that certain edge cases actively defy standard automated scraping. Below are four archetypes that required human triage:
-        </p>
-        <div class="fail-narrative-grid">
-          <div class="fail-app-box">
-            <h4>WhatsApp Business (Meta BSP)</h4>
-            <p><strong>Failure:</strong> Extractor marked self-serve as unknown. <strong>Reality:</strong> Requires Meta Business Verification and template pre-approval. Pure HTTP scraping cannot verify organizational onboarding gates.</p>
-          </div>
-          <div class="fail-app-box">
-            <h4>NotebookLM (Closed App)</h4>
-            <p><strong>Failure:</strong> Extractor attempted to find an API endpoint. <strong>Reality:</strong> Zero public developer API exists; web application UI only. The agent had to be taught to return clean <code>blocked</code> verdicts.</p>
-          </div>
-          <div class="fail-app-box">
-            <h4>Amazon SP-API (AWS SigV4)</h4>
-            <p><strong>Failure:</strong> Extractor struggled to categorize auth. <strong>Reality:</strong> Hybrid architecture: Login with Amazon (LWA) OAuth token combined with AWS Signature Version 4 IAM signing.</p>
-          </div>
-          <div class="fail-app-box">
-            <h4>Sherlock (CLI Tool)</h4>
-            <p><strong>Failure:</strong> Extractor searched for HTTP endpoints. <strong>Reality:</strong> Open-source command-line OSINT tool without a SaaS cloud backend. Correctly classified as <code>skill_or_cli_only</code>.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 6: Proof & Reproducibility -->
-    <section class="proof-section">
-      <div class="section-head">
-        <span class="section-tag">Reproducibility</span>
-        <h2 class="section-title">Verification Commands & Artifact Proof</h2>
-      </div>
-
-      <p style="color: var(--text-muted); margin-bottom: 1rem;">
-        Run the complete pipeline, score results against the blind gold set, or trigger the automated workflow directly:
-      </p>
-
-      <div class="cli-box">
-# 1. Install dependencies
-uv sync
-
-# 2. Run the research agent across all 100 apps (concurrency 10)
-python -m research run --all --mode v2 --concurrency 10 --output data/pass2.jsonl
-
-# 3. Score against gold benchmark and output diagnostic misses
-python eval/score.py --predictions data/pass2.jsonl --gold eval/gold.csv --split eval/split.json
-
-# 4. Build case-study static site
-python site/build.py
-      </div>
-
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem;">
-        <div class="checksum-box">
-          <strong>Pass 1 Frozen Checksum (data/pass1.sha256):</strong><br />
-          <code>a314a5c0729019751a03b199e2cd1cc75cd7f7c1bd96fc0fa95ecefc795f8145</code>
-        </div>
-        <div class="checksum-box">
-          <strong>Pass 2 Frozen Checksum (data/pass2.sha256):</strong><br />
-          <code>cc4a804b9b19213be02d73f8a9b05eadc5a059d6f34cf02bb088de16aa371ac0</code>
-        </div>
-      </div>
     </section>
 
   </main>
 
-  <!-- Evidence Quote Modal -->
-  <div class="modal-backdrop" id="quoteModal" onclick="closeModal(event)">
-    <div class="modal-card" onclick="event.stopPropagation()">
-      <button class="modal-close" onclick="closeModalDirect()">&times;</button>
-      <h3 id="modalAppTitle" style="color: #38bdf8; margin-bottom: 0.25rem;">App Evidence</h3>
-      <div id="modalFieldTitle" style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-dim);"></div>
-      <div class="quote-box" id="modalQuoteContent"></div>
-      <p style="font-size: 0.85rem; color: var(--text-muted);">
-        <strong>Source URL:</strong> <a id="modalSourceLink" href="#" target="_blank" rel="noopener"></a>
-      </p>
+  <!-- Evidence Quote Modal Dialog -->
+  <div class="modal-overlay" id="quoteModal" onclick="closeModal(event)">
+    <div class="modal-dialog" onclick="event.stopPropagation()">
+      <button class="modal-close-btn" onclick="closeModalDirect()">&times;</button>
+      <div class="modal-header-tag" id="modalFieldTitle">Documentation Evidence</div>
+      <h3 class="modal-app-name" id="modalAppTitle">App Evidence</h3>
+      <div class="modal-quote-content" id="modalQuoteContent"></div>
+      <div class="modal-footer-meta">
+        <strong>Source:</strong> <a id="modalSourceLink" href="#" target="_blank" rel="noopener"></a>
+      </div>
     </div>
   </div>
 
@@ -1323,7 +1321,6 @@ python site/build.py
   </script>
 
   <script>
-    // Embedded App Data
     let appRecords = [];
     try {
       appRecords = JSON.parse(document.getElementById('dataset').textContent);
@@ -1333,23 +1330,47 @@ python site/build.py
 
     let currentCategory = 'all';
 
+    function formatVerdict(verdict) {
+      const map = {
+        'ship_now': 'Ship Now',
+        'ship_with_setup_friction': 'Setup Friction',
+        'needs_outreach': 'Needs Outreach',
+        'blocked': 'Blocked',
+        'skill_or_cli_only': 'CLI / Skill Only',
+        'unknown': 'Unknown'
+      };
+      return map[verdict] || verdict.replace(/_/g, ' ');
+    }
+
+    function formatSelfServe(tier) {
+      const map = {
+        'free_self_serve': 'Free Self-Serve',
+        'trial_self_serve': 'Trial Self-Serve',
+        'paid_required': 'Paid Required',
+        'approval_required': 'Approval Required',
+        'partnership_or_sales_gated': 'Sales Gated',
+        'unknown': 'Unknown'
+      };
+      return map[tier] || tier.replace(/_/g, ' ');
+    }
+
     function renderTable() {
       const tbody = document.getElementById('matrixTableBody');
-      const search = document.getElementById('searchInput').value.toLowerCase();
+      const search = document.getElementById('searchInput').value.toLowerCase().trim();
       tbody.innerHTML = '';
 
       const filtered = appRecords.filter(app => {
-        const cat = app.category?.value || '';
-        const name = app.name || '';
-        const id = app.id || '';
-        const auth = (app.auth_methods?.value || []).join(' ');
+        const cat = (app.category?.value || '').toLowerCase();
+        const name = (app.name || '').toLowerCase();
+        const id = (app.id || '').toLowerCase();
+        const auth = (app.auth_methods?.value || []).join(' ').toLowerCase();
 
-        const matchesCat = currentCategory === 'all' || cat.toLowerCase().includes(currentCategory.toLowerCase());
+        const matchesCat = currentCategory === 'all' || cat.includes(currentCategory.toLowerCase());
         const matchesSearch = !search || 
-          name.toLowerCase().includes(search) || 
-          id.toLowerCase().includes(search) || 
-          cat.toLowerCase().includes(search) ||
-          auth.toLowerCase().includes(search);
+          name.includes(search) || 
+          id.includes(search) || 
+          cat.includes(search) ||
+          auth.includes(search);
 
         return matchesCat && matchesSearch;
       });
@@ -1357,8 +1378,8 @@ python site/build.py
       filtered.forEach(app => {
         const tr = document.createElement('tr');
         const authList = (app.auth_methods?.value || ['unknown']).join(', ');
-        const selfServe = app.self_serve?.value || 'unknown';
-        const apiStyle = app.api_style?.value || 'unknown';
+        const selfServe = formatSelfServe(app.self_serve?.value || 'unknown');
+        const apiStyle = (app.api_style?.value || 'unknown').toUpperCase();
         const openApi = app.openapi_spec_available?.value;
         const openApiStr = openApi === true ? 'Yes' : (openApi === false ? 'No' : 'Unknown');
         const mcpVal = app.existing_mcp?.value || 'none';
@@ -1367,11 +1388,9 @@ python site/build.py
 
         tr.innerHTML = `
           <td>
-            <div class="app-title-cell">
-              <span>${app.name}</span>
-            </div>
+            <span class="app-cell-name">${app.name}</span>
           </td>
-          <td><span class="badge-cat">${app.category?.value || 'SaaS'}</span></td>
+          <td><span class="cell-category">${app.category?.value || 'SaaS'}</span></td>
           <td>
             ${renderEvidenceCell(app, 'auth_methods', authList)}
           </td>
@@ -1379,19 +1398,22 @@ python site/build.py
             ${renderEvidenceCell(app, 'self_serve', selfServe)}
           </td>
           <td>
-            ${renderEvidenceCell(app, 'api_style', apiStyle)}
+            <span class="cell-mono">${apiStyle}</span>
           </td>
           <td>
-            ${renderEvidenceCell(app, 'openapi_spec_available', openApiStr)}
+            <span class="cell-mono">${openApiStr}</span>
           </td>
           <td>
-            <span class="badge-cat">${mcpVal}</span>
+            <span class="cell-category">${mcpVal}</span>
           </td>
           <td>
-            <span class="badge-cat">${composioVal}</span>
+            <span class="cell-category">${composioVal}</span>
           </td>
           <td>
-            <span class="status-badge badge-${verdict.replace(/_/g, '-')}">${verdict.replace(/_/g, ' ')}</span>
+            <div class="status-row status-${verdict.replace(/_/g, '-')}">
+              <span class="status-dot"></span>
+              <span class="status-label">${formatVerdict(verdict)}</span>
+            </div>
           </td>
         `;
         tbody.appendChild(tr);
@@ -1400,17 +1422,19 @@ python site/build.py
 
     function renderEvidenceCell(app, fieldName, displayValue) {
       const fieldObj = app[fieldName];
-      if (!fieldObj) return displayValue;
+      if (!fieldObj) return `<span>${displayValue}</span>`;
 
       const hasQuote = fieldObj.quote && fieldObj.quote.trim().length > 0;
       if (hasQuote) {
         const encodedQuote = encodeURIComponent(fieldObj.quote);
         const encodedUrl = encodeURIComponent(fieldObj.evidence_url || '');
         const encodedApp = encodeURIComponent(app.name);
+        const cleanFieldName = fieldName.replace(/_/g, ' ').toUpperCase();
         return `
           <span>${displayValue}</span>
-          <button class="evidence-badge badge-quote" onclick="openModal('${encodedApp}', '${fieldName}', '${encodedQuote}', '${encodedUrl}')" title="View verbatim quote">
-            ❝ quote
+          <button class="quote-trigger" onclick="openModal('${encodedApp}', '${cleanFieldName}', '${encodedQuote}', '${encodedUrl}')" title="View documentation quote">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+            <span>Quote</span>
           </button>
         `;
       } else {
@@ -1420,7 +1444,7 @@ python site/build.py
 
     function openModal(app, field, quote, url) {
       document.getElementById('modalAppTitle').textContent = decodeURIComponent(app);
-      document.getElementById('modalFieldTitle').textContent = 'Field: ' + field;
+      document.getElementById('modalFieldTitle').textContent = decodeURIComponent(field) + ' EVIDENCE';
       document.getElementById('modalQuoteContent').textContent = '"' + decodeURIComponent(quote) + '"';
       const link = document.getElementById('modalSourceLink');
       const decodedUrl = decodeURIComponent(url);
@@ -1439,10 +1463,10 @@ python site/build.py
       }
     }
 
-    // Filter Chips
-    document.querySelectorAll('.chip').forEach(btn => {
+    // Tab Filtering
+    document.querySelectorAll('.tab-btn').forEach(btn => {
       btn.addEventListener('click', () => {
-        document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         currentCategory = btn.getAttribute('data-cat');
         renderTable();
